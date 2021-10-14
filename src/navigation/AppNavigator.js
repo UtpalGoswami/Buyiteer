@@ -8,7 +8,7 @@ import {
   Profile,
   About,
   Location,
-  SplashScreen
+  Logout
 } from "../screens";
 // Import vector icons
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -19,14 +19,6 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
-
-function Logout({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Logout</Text>
-    </View>
-  );
-}
 
 function CustomDrawerContent(props) {
   return (

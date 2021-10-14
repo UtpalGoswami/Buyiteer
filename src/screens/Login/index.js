@@ -57,7 +57,7 @@ const Login = ({ navigation }) => {
      * @function onLoginSubmit - Submit the user details
      */
     const onLoginSubmit = () => {
-        navigation.navigate('Home');
+        navigation.navigate('AppNavigator');
         // // Keyboard dismiss
         // Keyboard.dismiss();
 

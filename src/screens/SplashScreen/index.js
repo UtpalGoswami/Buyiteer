@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { View, Image, SafeAreaView } from 'react-native';
 import styles from './style';
 // Images
@@ -9,7 +9,6 @@ import Images from '../../utils/Images';
  * @param  {Object} navigation - Use for navigation
  */
 export default SplashScreen = ({ navigation }) => {
-
     return (
         <SafeAreaView style={styles.safeView}>
             <View style={styles.container}>

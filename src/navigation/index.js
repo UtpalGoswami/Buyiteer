@@ -4,6 +4,9 @@ import { navigationRef } from './NavigationService';
 import AppNavigator from './AppNavigator';
 import AuthNavigator from './AuthNavigator';
 import { SplashScreen } from "../screens";
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
 
 /**
  * Manage application navigation flow, This function is called when application loads.
@@ -24,7 +27,14 @@ export default AppContainer = () => {
 
   return (
     <NavigationContainer ref={navigationRef}>
-      <AppNavigator />
+      <Stack.Navigator initialRouteName="AuthNavigator"
+        screenOptions={{
+          headerShown: false
+        }}>
+        <Stack.Screen name="Splash" component={SplashScreen} />
+        <Stack.Screen name="AppNavigator" component={AppNavigator} />
+        <Stack.Screen name="AuthNavigator" component={AuthNavigator} />
+      </Stack.Navigator>
     </NavigationContainer>
   )
 }
