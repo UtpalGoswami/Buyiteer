@@ -17,7 +17,7 @@ import NetInfo from "@react-native-community/netinfo";
 import styles from './style';
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { requestLogin } from '../../redux/actions/loginActions';
+import { requestSignUp } from '../../redux/actions/signUpActions';
 // Images
 import Images from '../../utils/Images';
 
