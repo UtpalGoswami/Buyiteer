@@ -1,56 +1,195 @@
 import { Alert } from 'react-native';
 // Storage
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 
 // common service URL
-const SERVICEURL = 'https://reqres.in/api/users?page=2';
+const SERVICEURL = 'https://backend.buyiteer.com.au:3000';
 
 /**
 * @function signUp signUp
-* @param  firstName {string} - firstName for new create firebase user
-* @param  lastName {string} - lastName for new create firebase user
 * @param  email {string} - email for new create firebase user
 * @param  password {string} - password for new create firebase user
 */
-export const signUp = (firstName, lastName, email, password) => {
-    if (!firstName || !lastName || !email || !password) {
-        Alert.alert('Error', 'Please add valid details');
-        return null;
-    }
+export const signUp = (email, password) => {
 
+    const URL = SERVICEURL + '/merchant/' + 'signup';
+    console.log('signUp URL : ' + URL);
+
+    return new Promise(async (resolve, reject) => {
+        const data = JSON.stringify({
+            email: email,
+            password: password
+        });
+        const options = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+        console.log('Fina log : ' + URL, data, options);
+        axios.post(URL, data, options)
+            .then(async (response) => {
+                console.log("signup Resp : ", JSON.stringify(response.data));
+                resolve(response);
+            })
+            .catch((error) => {
+                // handle error
+                console.log('signup error : ', error);
+                resolve(error);
+            })
+
+    });
 }
 
 /**
-* @function signIn signIn
+* @function LogIn LogIn
 * @param  email {string} - email for login user
 * @param  password {string} - password for login user
 */
-export const signIn = async (email, password) => {
-    if (!email || !password) {
-        Alert.alert('Error', 'Please enter all fields')
-    }
-    return new Promise(async (resolve, reject) => {
-        var status = 200;
-        try {
-            const response = await fetch('https://reactnative.dev/movies.json');
-            const json = await response.json();
-            resolve(json);
-        } catch (error) {
-            reject(error);
-        }
-    });
+export const LogIn = async (email, password) => {
 
+    const URL = SERVICEURL + '/merchant/' + 'login';
+    console.log('LogIn URL : ' + URL);
+
+    return new Promise(async (resolve, reject) => {
+        const data = JSON.stringify({
+            email: email,
+            password: password
+        });
+        const options = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+        console.log('Fina log : ' + URL, data, options);
+        axios.post(URL, data, options)
+            .then(async (response) => {
+                console.log("LogIn Resp : ", JSON.stringify(response.data));
+                resolve(response);
+            })
+            .catch((error) => {
+                // handle error
+                console.log('LogIn error : ', error);
+                resolve(error);
+            })
+
+    });
 }
+// authServerUrl: {
+//     authority: 'https://backend.buyiteer.com.au:3000',
+//     forgotPasswordPath: '/merchant/forgot-password',
+//     resetPasswordPath: '/merchant/reset-password',
+//     loginPath: '/merchant/login',
+//     signUpPath: '/merchant/signup',
+//     logoutPath: '/merchant/logout',
+//     imageUploadPath: '/file/upload'
+// }
+
+// register(user: User) {
+//     return request({
+//         url: `${environment.authServerUrl.authority}${environment.authServerUrl.signUpPath}`,
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         content: JSON.stringify({
+//             email: user.email,
+//             password: user.password,
+//         }),
+//     });
+// }
 
 /**
 * @function forgetPassword forgetPassword
 * @param  email {string} - email for forgot user password
-* @param  navigation {object} - navigation for screen navigate
 */
-export const forgetPassword = (email, navigation) => {
-    if (!email) {
-        Alert.alert('Error', 'Please enter valid email')
-    }
+export const forgetPassword = (email) => {
+    const URL = SERVICEURL + '/merchant/' + 'forgot-password';
+    console.log('forgetPassword URL : ' + URL);
+
+    return new Promise(async (resolve, reject) => {
+        const data = JSON.stringify({
+            email: email
+        });
+        const options = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+        console.log('Fina log : ' + URL, data, options);
+        axios.post(URL, data, options)
+            .then(async (response) => {
+                console.log("forgetPassword Resp : ", JSON.stringify(response.data));
+                resolve(response);
+            })
+            .catch((error) => {
+                // handle error
+                console.log('forgetPassword error : ', error);
+                resolve(error);
+            })
+
+    });
+}
+
+/**
+* @function resetPassword forgetPassword
+* @param  email {string} - email for forgot user password
+*/
+export const resetPassword = (email) => {
+    const URL = SERVICEURL + '/merchant/' + 'reset-password';
+    console.log('resetPassword URL : ' + URL);
+
+    return new Promise(async (resolve, reject) => {
+        const data = JSON.stringify({
+            email: email
+        });
+        const options = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+        console.log('Fina log : ' + URL, data, options);
+        axios.post(URL, data, options)
+            .then(async (response) => {
+                console.log("resetPassword Resp : ", JSON.stringify(response.data));
+                resolve(response);
+            })
+            .catch((error) => {
+                // handle error
+                console.log('resetPassword error : ', error);
+                resolve(error);
+            })
+
+    });
+}
+
+/**
+* @function LogOut LogOut
+* @param  email {string} - email for forgot user password
+*/
+export const LogOut = () => {
+    const URL = SERVICEURL + '/merchant/' + 'reset-password';
+    console.log('resetPassword URL : ' + URL);
+
+    return new Promise(async (resolve, reject) => {
+        const data = JSON.stringify({
+        });
+        const options = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+        console.log('Fina log : ' + URL, data, options);
+        axios.post(URL, data, options)
+            .then(async (response) => {
+                console.log("LogOut Resp : ", JSON.stringify(response.data));
+                resolve(response);
+            })
+            .catch((error) => {
+                // handle error
+                console.log('LogOut error : ', error);
+                resolve(error);
+            })
+
+    });
 }
 
 

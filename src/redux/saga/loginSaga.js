@@ -1,7 +1,7 @@
 import { call, cancel, cancelled, fork, put, take, takeLatest, takeEvery } from 'redux-saga/effects';
 import { Alert } from 'react-native';
 import { NavigationActions } from 'react-navigation';
-import { signIn } from '../../services/Api';
+import { LogIn } from '../../services/Api';
 import * as loginActions from '../actions/loginActions';
 import * as type from '../actions/types';
 
@@ -16,7 +16,7 @@ export default function* loginAsync(action) {
     yield put(loginActions.enableLoader());
 
     // Calling function for API
-    const response = yield fork(signIn, action.email, action.password);
+    const response = yield call(LogIn, action.email, action.password);
     // console.log('function*loginAsync :: response : ', response)
 
     if (response) {

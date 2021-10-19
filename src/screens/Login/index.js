@@ -38,10 +38,10 @@ const Login = ({ navigation }) => {
      * @description password {string} - Password for login user.
      * @description spinner {string} - Spinner for wait login user request.
      */
-    // const [email, setEmail] = useState('ugoswami@codal.com');
-    // const [password, setPassword] = useState('123456');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('ugoswami@codal.com');
+    const [password, setPassword] = useState('123456');
+    // const [email, setEmail] = useState('');
+    // const [password, setPassword] = useState('');
     const [spinner, setSpinner] = useState(false);
 
 
@@ -57,27 +57,26 @@ const Login = ({ navigation }) => {
      * @function onLoginSubmit - Submit the user details
      */
     const onLoginSubmit = () => {
-        navigation.navigate('AppNavigator');
+        // navigation.navigate('AppNavigator');
         // // Keyboard dismiss
         // Keyboard.dismiss();
 
-        // // Regex string for email validate
-        // const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        // if (regex.test(email) && password !== '') {
-
-        //     NetInfo.addEventListener(state => {
-        //         if (state.isConnected) {
-        //             setSpinner(true);
-        //             // Dispatch login request
-        //             dispatch(requestLogin(email, password));
-        //         } else {
-        //             Alert.alert('Error', I18n.t('connection.errorMessage'))
-        //         }
-        //     });
-        // } else {
-        //     // Error Alert
-        //     Alert.alert('BUYITEER', I18n.t('loginPage.invalidErrorMsg'));
-        // }
+        // Regex string for email validate
+        const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (regex.test(email) && password !== '') {
+            NetInfo.addEventListener(state => {
+                if (state.isConnected) {
+                    setSpinner(true);
+                    // Dispatch login request
+                    dispatch(requestLogin(email, password));
+                } else {
+                    Alert.alert('Error', I18n.t('connection.errorMessage'))
+                }
+            });
+        } else {
+            // Error Alert
+            Alert.alert('BUYITEER', I18n.t('loginPage.invalidErrorMsg'));
+        }
     }
 
     return (
@@ -86,7 +85,7 @@ const Login = ({ navigation }) => {
             {spinner ? <Spinner color={colors.blue} /> :
                 <View style={styles.container}>
                     <View style={styles.topView}>
-                        <View style={{ alignItems: 'center'}}>
+                        <View style={{ alignItems: 'center' }}>
                             <Image source={Images.headerLogo} style={styles.logoImage} />
                         </View>
                         <View>

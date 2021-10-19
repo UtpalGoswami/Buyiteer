@@ -21,14 +21,14 @@ export default function index() {
     });
 
     return (
-        <Provider store={store}>
-            <ApolloProvider client={client}>
-                <App />
-            </ApolloProvider>
-        </Provider >
         // <Provider store={store}>
-        //     <App />
-        // </Provider>
+        //     <ApolloProvider client={client}>
+        //         <App />
+        //     </ApolloProvider>
+        // </Provider >
+        <Provider store={store}>
+            <App />
+        </Provider>
     );
 }
 

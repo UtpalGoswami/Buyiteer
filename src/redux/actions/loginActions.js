@@ -10,7 +10,6 @@ import * as types from './types';
  * @param  {string} password - Use password for login request
  */
 export function requestLogin(email, password) {
-  console.log('requestLogin : email, password :: ', email, password);
   return {
     type: types.LOGIN_REQUEST,
     email,
