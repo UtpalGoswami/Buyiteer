@@ -3,10 +3,12 @@ import {
     View,
     Text
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Logout = ({ navigation }) => {
 
-    useEffect(() => {
+    useEffect(async () => {
+        await AsyncStorage.setItem('EmailAddress', '');
         navigation.navigate('AuthNavigator');
     }, []);
 

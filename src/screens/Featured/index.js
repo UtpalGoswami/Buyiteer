@@ -8,7 +8,8 @@ import {
   Text,
   ToastAndroid,
   View,
-  StatusBar
+  StatusBar,
+  FlatList
 } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';

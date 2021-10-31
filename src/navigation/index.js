@@ -15,19 +15,9 @@ const Stack = createStackNavigator();
 
 export default AppContainer = () => {
 
-  const [initializing, setInitializing] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (initializing) setInitializing(false);
-    }, 2000);
-  }, []);
-
-  if (initializing) return <SplashScreen />;
-
   return (
     <NavigationContainer ref={navigationRef}>
-      <Stack.Navigator initialRouteName="AuthNavigator"
+      <Stack.Navigator initialRouteName="Splash"
         screenOptions={{
           headerShown: false
         }}>
@@ -39,4 +29,11 @@ export default AppContainer = () => {
   )
 }
 
+// const [initializing, setInitializing] = useState(true);
+// useEffect(() => {
+//   setTimeout(() => {
+//     if (initializing) setInitializing(false);
+//   }, 2000);
+// }, []);
+// if (initializing) return <SplashScreen />;
 // {user ? <AppNavigator /> : <AuthNavigator />}

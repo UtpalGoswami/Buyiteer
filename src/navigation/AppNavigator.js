@@ -29,7 +29,7 @@ function CustomDrawerContent(props) {
             name="user"
             size={30}
           />
-          <Text style={{ color: colors.white, fontSize: 16, fontWeight: '500', marginTop : 10 }}>utpal.goswami.39@gmail.com</Text>
+          <Text style={{ color: colors.white, fontSize: 16, fontWeight: '500', marginTop: 10 }}>utpal.goswami.39@gmail.com</Text>
         </View>
         <View>
           <DrawerItemList {...props} />
@@ -79,7 +79,9 @@ export default AppNavigator = () => (
       headerShown: false
     }}>
 
-    <Drawer.Screen name="Profile" component={Profile}
+    <Drawer.Screen
+      name="Profile"
+      component={Profile}
       options={{
         title: 'Profile',
         drawerIcon: ({ focused, size }) => (

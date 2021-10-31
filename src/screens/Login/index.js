@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { requestLogin } from '../../redux/actions/loginActions';
 // Images
 import Images from '../../utils/Images';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /**
  * @class Login
@@ -38,7 +39,7 @@ const Login = ({ navigation }) => {
      * @description password {string} - Password for login user.
      * @description spinner {string} - Spinner for wait login user request.
      */
-    const [email, setEmail] = useState('ugoswami@codal.com');
+    const [email, setEmail] = useState('deepak6sp@gmail.com');
     const [password, setPassword] = useState('123456');
     // const [email, setEmail] = useState('');
     // const [password, setPassword] = useState('');
@@ -48,8 +49,17 @@ const Login = ({ navigation }) => {
     const loginResponse = useSelector(state => state.loginReducer.loginResponse);
     // const spinnerResponse = useSelector(state => state.loginReducer.spinner);
 
-    useEffect(() => {
+    useEffect(async () => {
         console.log('Final Login Resp : ' + JSON.stringify(loginResponse));
+        console.log('loginResponse.status : ' + loginResponse.status);
+        if (loginResponse.status === 200) {
+            await AsyncStorage.setItem('EmailAddress', email);
+            navigation.navigate('AppNavigator');
+        } else if (loginResponse.status === 400) {
+            Alert.alert('Error', I18n.t('loginPage.invalidErrorMsg'))
+        } else {
+            Alert.alert('Error', loginResponse.message)
+        }
         setSpinner(false);
     }, [loginResponse]);
 

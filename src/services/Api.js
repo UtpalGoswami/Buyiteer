@@ -61,10 +61,10 @@ export const LogIn = async (email, password) => {
                 'Content-Type': 'application/json',
             }
         };
-        console.log('Fina log : ' + URL, data, options);
+        // console.log('Fina log : ' + URL, data, options);
         axios.post(URL, data, options)
             .then(async (response) => {
-                console.log("LogIn Resp : ", JSON.stringify(response.data));
+                // console.log("LogIn Resp : ", JSON.stringify(response.data));
                 resolve(response);
             })
             .catch((error) => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Keyboard, Image, SafeAreaView, Alert } from 'react-native';
 import { colors, I18n } from '../../constants';
 // Style
@@ -7,6 +7,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 // Images
 import Images from '../../utils/Images';
 import { Button, Input, TextButton, AuthText, Spinner } from '../../components';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /**
  * @class Profile
@@ -15,20 +16,26 @@ import { Button, Input, TextButton, AuthText, Spinner } from '../../components';
 export default Profile = ({ navigation }) => {
 
   /**
- * Set user firstname value.
- * @description email {string} - Email for login user.
- * @description password {string} - Password for login user.
- * @description spinner {string} - Spinner for wait login user request.
- */
+   * Set user firstname value.
+   * @description email {string} - Email for login user.
+   * @description password {string} - Password for login user.
+   * @description spinner {string} - Spinner for wait login user request.
+   */
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [spinner, setSpinner] = useState(false);
 
+  useEffect(async()=>{
+    var userEmail = await AsyncStorage.getItem('EmailAddress');
+    console.log('userEmail : '+userEmail);
+    setEmail(userEmail);
+  },[])
+
   /**
-* @param {} validateRequest - Validate the request
-*/
+    * @param {} validateRequest - Validate the request
+    */
   validateRequest = () => {
     // Regux string for email validate
     const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
