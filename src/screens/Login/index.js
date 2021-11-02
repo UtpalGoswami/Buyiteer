@@ -52,13 +52,15 @@ const Login = ({ navigation }) => {
     useEffect(async () => {
         console.log('Final Login Resp : ' + JSON.stringify(loginResponse));
         console.log('loginResponse.status : ' + loginResponse.status);
-        if (loginResponse.status === 200) {
-            await AsyncStorage.setItem('EmailAddress', email);
-            navigation.navigate('AppNavigator');
-        } else if (loginResponse.status === 400) {
-            Alert.alert('Error', I18n.t('loginPage.invalidErrorMsg'))
-        } else {
-            Alert.alert('Error', loginResponse.message)
+        if (Object.keys(loginResponse).length !== 0) {
+            if (loginResponse.status === 200) {
+                await AsyncStorage.setItem('EmailAddress', email);
+                navigation.navigate('AppNavigator');
+            } else if (loginResponse.status === 400) {
+                Alert.alert('Error', I18n.t('loginPage.invalidErrorMsg'))
+            } else {
+                Alert.alert('Error', loginResponse.message)
+            }
         }
         setSpinner(false);
     }, [loginResponse]);

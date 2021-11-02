@@ -43,6 +43,13 @@ const ForgotPassword = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [spinner, setSpinner] = useState(false);
 
+    const forgotPasswordResponse = useSelector(state => state.forgotPasswordReducer.forgotPasswordResponse);
+    // const spinnerResponse = useSelector(state => state.loginReducer.spinner);
+
+    useEffect(async () => {
+        console.log('Final Forgot Password Resp : ' + JSON.stringify(forgotPasswordResponse));
+    }, [forgotPasswordResponse]);
+
     /**
      * @function onForgotSubmit - email for forgot password
      */

@@ -11,6 +11,8 @@ export const LOGIN_RESPONSE = 'LOGIN_RESPONSE';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
 // const variable for login request
 export const LOG_OUT = 'LOG_OUT';
+// const variable for login request
+export const LOGOUT_RESPONSE = 'LOGOUT_RESPONSE';
 
 // signUp
 // const variable for signup enable loader

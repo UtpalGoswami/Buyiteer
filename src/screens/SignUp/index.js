@@ -45,6 +45,13 @@ const SignUp = ({ navigation }) => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [spinner, setSpinner] = useState(false);
 
+    const signUpResponse = useSelector(state => state.signUpReducer.signUpResponse);
+    // const spinnerResponse = useSelector(state => state.signUpReducer.spinner);
+
+    useEffect(async () => {
+        console.log('Final SignUp Resp : ' + JSON.stringify(signUpResponse));
+    }, [signUpResponse]);
+
     /**
      * @param {} validateRequest - Validate the request
      */

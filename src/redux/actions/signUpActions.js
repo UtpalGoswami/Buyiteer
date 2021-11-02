@@ -64,3 +64,13 @@ export function logOut() {
     type: types.LOG_OUT,
   };
 }
+/**
+ * @description onlogoutResponse - Signup failed action
+ * @param  {object} response - Signup Response
+ */
+ export function onlogoutResponse(response) {
+  return {
+    type: types.LOGOUT_RESPONSE,
+    response,
+  };
+}

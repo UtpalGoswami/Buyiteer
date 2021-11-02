@@ -4,7 +4,7 @@ import loginSaga from './loginSaga';
 import signUpSaga from './signUpSaga';
 import dashboardSaga from './dashboardSaga';
 import forgotPasswordSaga from './forgotPasswordSaga';
-import deviceDetailsSaga from './resetPasswordSaga';
+import resetPasswordSaga from './resetPasswordSaga';
 import logoutSaga from './logoutSaga';
 import profileSaga from './profileSaga';
 

@@ -6,7 +6,8 @@ const initialState = {
   id: 0,
   email: '',
   password: '',
-  spinner : false,
+  signUpResponse: {},
+  spinner: false,
 };
 
 /**
@@ -20,29 +21,30 @@ export default function signUpReducer(state = initialState, action) {
         ...state,
         email: action.email,
         password: action.password,
-        spinner : true,
+        spinner: true,
       };
     case types.SIGNUP_ENABLE_LOADER:
       return {
         ...state,
-        spinner : true,
+        spinner: true,
       };
     case types.SIGNUP_DISABLE_LOADER:
       return {
         ...state,
-        spinner : false,
+        spinner: false,
       };
     case types.SIGNUP_RESPONSE:
       return {
         ...state,
         isLoggedIn: true,
-        spinner : false,
+        signUpResponse: action.response,
+        spinner: false,
       };
     case types.SIGNUP_FAILED:
       return {
         ...state,
         isLoggedIn: false,
-        spinner : false,
+        spinner: false,
       };
     default:
       return state;
