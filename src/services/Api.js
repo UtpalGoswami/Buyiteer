@@ -98,10 +98,10 @@ export const LogIn = async (email, password) => {
 // }
 
 /**
-* @function forgetPassword forgetPassword
+* @function ForgetPassword forgetPassword
 * @param  email {string} - email for forgot user password
 */
-export const forgetPassword = (email) => {
+export const ForgetPassword = (email) => {
     const URL = SERVICEURL + '/merchant/' + 'forgot-password';
     console.log('forgetPassword URL : ' + URL);
 
@@ -166,8 +166,8 @@ export const resetPassword = (email) => {
 * @param  email {string} - email for forgot user password
 */
 export const LogOut = () => {
-    const URL = SERVICEURL + '/merchant/' + 'reset-password';
-    console.log('resetPassword URL : ' + URL);
+    const URL = SERVICEURL + '/merchant/' + 'logout';
+    console.log('LogOut URL : ' + URL);
 
     return new Promise(async (resolve, reject) => {
         const data = JSON.stringify({

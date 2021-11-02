@@ -26,6 +26,20 @@ export const SIGNUP_LOADING_ENDED = 'SIGNUP_LOADING_ENDED';
 // const variable for signup failed
 export const SIGNUP_FAILED = 'SIGNUP_FAILED';
 
+// forgot password
+// const variable for signup enable loader
+export const FORGOT_PASSWORD_ENABLE_LOADER = 'FORGOT_PASSWORD_ENABLE_LOADER';
+// const variable for signup disable loader
+export const FORGOT_PASSWORD_DISABLE_LOADER = 'FORGOT_PASSWORD_DISABLE_LOADER';
+// const variable for signup request
+export const FORGOT_PASSWORD_REQUEST = 'FORGOT_PASSWORD_REQUEST';
+// const variable for signup response
+export const FORGOT_PASSWORD_RESPONSE = 'FORGOT_PASSWORD_RESPONSE';
+// const variable for signup loading end
+export const FORGOT_PASSWORD_LOADING_ENDED = 'FORGOT_PASSWORD_LOADING_ENDED';
+// const variable for signup failed
+export const FORGOT_PASSWORD_FAILED = 'FORGOT_PASSWORD_FAILED';
+
 // dashboard
 // const variable for enable loader 
 export const DASHBOARD_ENABLE_LOADER = 'DASHBOARD_ENABLE_LOADER';

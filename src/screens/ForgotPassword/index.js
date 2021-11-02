@@ -17,7 +17,7 @@ import NetInfo from "@react-native-community/netinfo";
 import styles from './style';
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { requestLogin } from '../../redux/actions/loginActions';
+import { requestForgotPassword } from '../../redux/actions/forgotPasswordActions';
 // Images
 import Images from '../../utils/Images';
 
@@ -26,6 +26,11 @@ import Images from '../../utils/Images';
  * @param  {Object} navigation - Use for navigation
  */
 const ForgotPassword = ({ navigation }) => {
+
+    /**
+     * @description dispatch {object} - Dispatch Action
+     */
+    const dispatch = useDispatch();
 
     /**
      * Set user firstname value.
@@ -48,7 +53,7 @@ const ForgotPassword = ({ navigation }) => {
                 if (state.isConnected) {
                     setSpinner(true);
                     // Dispatch forgot password request
-                    // dispatch(requestSignUp(email, password))
+                    dispatch(requestForgotPassword(email))
                 } else {
                     Alert.alert('Error', I18n.t('connection.errorMessage'))
                 }

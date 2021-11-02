@@ -4,8 +4,6 @@ import * as types from '../actions/types';
 const initialState = {
   isLoggedIn: false,
   id: 0,
-  firstName: '',
-  lastName: '',
   email: '',
   password: '',
   spinner : false,
@@ -15,13 +13,11 @@ const initialState = {
  * Reducer related with signup
  * @class signupReducer
  */
-export default function loginReducer(state = initialState, action) {
+export default function signUpReducer(state = initialState, action) {
   switch (action.type) {
     case types.SIGNUP_REQUEST:
       return {
         ...state,
-        firstName: action.firstName,
-        lastName: action.lastName,
         email: action.email,
         password: action.password,
         spinner : true,

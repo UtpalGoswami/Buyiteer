@@ -1,42 +1,40 @@
 import { call, cancel, cancelled, fork, put, take, takeLatest, takeEvery } from 'redux-saga/effects';
-import { Alert } from 'react-native';
-import { NavigationActions } from 'react-navigation';
-import { LogIn } from '../../services/Api';
-import * as loginActions from '../actions/loginActions';
+import { ForgetPassword } from '../../services/Api';
+import * as forgotPasswordActions from '../actions/forgotPasswordActions';
 import * as type from '../actions/types';
 
 /**
- * Create loginAsync file for manage saga effects
- * @class loginAsync
+ * Create forgotPasswordAsync file for manage saga effects
+ * @class forgotPasswordAsync
  */
-export default function* loginAsync(action) {
+export default function* forgotPasswordAsync(action) {
 
   try {
     // Enable login loader
-    yield put(loginActions.enableLoader());
+    yield put(forgotPasswordActions.enableLoader());
 
     // Calling function for API
-    const response = yield call(LogIn, action.email, action.password);
-    // console.log('function*loginAsync :: response : ', response)
+    const response = yield call(ForgetPassword, action.email);
+    // console.log('function*forgotPasswordAsync :: response : ', response)
 
     if (response) {
       // Store login response
-      yield put(loginActions.onLoginResponse(response));
+      yield put(forgotPasswordActions.onForgotPasswordResponse(response));
       // Disable loader
-      yield put(loginActions.disableLoader());
+      yield put(forgotPasswordActions.disableLoader());
       // no need to call navigate as this is handled by redux store with SwitchNavigator
       // yield put(NavigationActions.navigate({ routeName: 'LaunchScreen' }));
     } else {
       // Login failed
-      yield put(loginActions.loginFailed());
+      yield put(forgotPasswordActions.forgotPasswordFailed());
       // Disable loader
-      yield put(loginActions.disableLoader());
+      yield put(forgotPasswordActions.disableLoader());
     }
   } catch (error) {
     // Login failed
-    yield put(loginActions.loginFailed());
+    yield put(forgotPasswordActions.forgotPasswordFailed());
     // Disable loader
-    yield put(loginActions.disableLoader());
+    yield put(forgotPasswordActions.disableLoader());
 
   }
 

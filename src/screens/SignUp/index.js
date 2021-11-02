@@ -28,6 +28,11 @@ import Images from '../../utils/Images';
 const SignUp = ({ navigation }) => {
 
     /**
+     * @description dispatch {object} - Dispatch Action
+     */
+    const dispatch = useDispatch();
+
+    /**
      * Set user firstname value.
      * @description email {string} - Email for login user.
      * @description password {string} - Password for login user.
