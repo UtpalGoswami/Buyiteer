@@ -60,11 +60,11 @@ export const signIn = async (email, password) => {
 }
 
 /**
-* @function forgetPassword forgetPassword
+* @function forgotPassword forgotPassword
 * @param  email {string} - email for forgot user password
 * @param  navigation {object} - navigation for screen navigate
 */
-export const forgetPassword = (email, navigation) => {
+export const forgotPassword = (email, navigation) => {
     // resetPassword(email) {
     //     return request({
     //         url: `${environment.authServerUrl.authority}${environment.authServerUrl.resetPasswordPath}`,

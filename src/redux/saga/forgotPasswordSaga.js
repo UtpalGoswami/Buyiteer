@@ -1,5 +1,5 @@
 import { call, cancel, cancelled, fork, put, take, takeLatest, takeEvery } from 'redux-saga/effects';
-import { ForgetPassword } from '../../services/Api';
+import { ForgotPassword } from '../../services/Api';
 import * as forgotPasswordActions from '../actions/forgotPasswordActions';
 import * as type from '../actions/types';
 
@@ -14,7 +14,7 @@ export default function* forgotPasswordAsync(action) {
     yield put(forgotPasswordActions.enableLoader());
 
     // Calling function for API
-    const response = yield call(ForgetPassword, action.email);
+    const response = yield call(ForgotPassword, action.email);
     // console.log('function*forgotPasswordAsync :: response : ', response)
 
     if (response) {

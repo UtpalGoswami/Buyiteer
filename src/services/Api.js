@@ -98,12 +98,12 @@ export const LogIn = async (email, password) => {
 // }
 
 /**
-* @function ForgetPassword forgetPassword
+* @function ForgotPassword forgotPassword
 * @param  email {string} - email for forgot user password
 */
-export const ForgetPassword = (email) => {
+export const ForgotPassword = (email) => {
     const URL = SERVICEURL + '/merchant/' + 'forgot-password';
-    console.log('forgetPassword URL : ' + URL);
+    console.log('forgotPassword URL : ' + URL);
 
     return new Promise(async (resolve, reject) => {
         const data = JSON.stringify({
@@ -117,12 +117,12 @@ export const ForgetPassword = (email) => {
         console.log('Fina log : ' + URL, data, options);
         axios.post(URL, data, options)
             .then(async (response) => {
-                console.log("forgetPassword Resp : ", JSON.stringify(response.data));
+                console.log("forgotPassword Resp : ", JSON.stringify(response.data));
                 resolve(response);
             })
             .catch((error) => {
                 // handle error
-                console.log('forgetPassword error : ', error);
+                console.log('forgotPassword error : ', error);
                 resolve(error);
             })
 
@@ -130,7 +130,7 @@ export const ForgetPassword = (email) => {
 }
 
 /**
-* @function resetPassword forgetPassword
+* @function resetPassword forgotPassword
 * @param  email {string} - email for forgot user password
 */
 export const resetPassword = (email) => {

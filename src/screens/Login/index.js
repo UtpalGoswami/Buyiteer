@@ -122,7 +122,7 @@ const Login = ({ navigation }) => {
                         <View style={{ alignItems: 'center' }}>
                             <TextButton
                                 text={I18n.t('loginPage.forgotPasswordLabel')}
-                                onPress={() => navigation.navigate('ForgetPassword')}
+                                onPress={() => navigation.navigate('ForgotPassword')}
                             />
                         </View>
                     </View>

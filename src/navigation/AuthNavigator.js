@@ -23,7 +23,7 @@ export default AuthNavigator = () => (
             component={SignUp}
         />
         <Stack.Screen
-            name="ForgetPassword"
+            name="ForgotPassword"
             component={ForgotPassword}
         />
     </Stack.Navigator>
