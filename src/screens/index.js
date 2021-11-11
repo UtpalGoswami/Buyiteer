@@ -9,5 +9,6 @@ export { default as Profile } from './Profile';
 export { default as Featured } from './Featured';
 export { default as About } from './About';
 export { default as Location } from './Location';
+export { default as FeaturedDetails } from './FeaturedDetails';
 export { default as Logout } from './Logout';
 

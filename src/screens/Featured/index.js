@@ -50,7 +50,7 @@ export default Featured = ({ navigation }) => {
 
   useEffect(() => {
     getLocation();
-  }, [])
+  }, []);
 
   useEffect(() => {
     setSpinner(true);
@@ -192,7 +192,9 @@ export default Featured = ({ navigation }) => {
       <DealItem
         item={item._source}
         onPress={() => {
-          console.log('..Go to Details..');
+          navigation.navigate('FeaturedDetails', {
+            item: item._source,
+          });
         }}
       />
     );

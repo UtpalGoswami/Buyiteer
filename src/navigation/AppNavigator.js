@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import {
   Featured,
+  FeaturedDetails,
   Profile,
   About,
   Location,
@@ -65,6 +66,7 @@ function FeaturedRouters() {
         }}>
         <Stack.Screen name="Featured1" component={Featured} />
         <Stack.Screen name="Location" component={Location} />
+        <Stack.Screen name="FeaturedDetails" component={FeaturedDetails} />
       </Stack.Navigator>
     </SafeAreaProvider>
   );

@@ -15,5 +15,10 @@ const images = {
 
     // Screen image
     defaultDeal: require('../../assets/images/Default-deal/Default-deal.png'),
+
+    direction: require('../../assets/images/direction/direction.png'),
+    call: require('../../assets/images/call/call.png'),
+    www: require('../../assets/images/www/www.png'),
+
 }
 export default images;
