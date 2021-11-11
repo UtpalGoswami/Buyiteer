@@ -1,8 +1,9 @@
 import { call, cancel, cancelled, fork, put, take, takeLatest, takeEvery } from 'redux-saga/effects';
 import { Alert } from 'react-native';
 import { NavigationActions } from '@react-navigation/native';
-import { getDeviceList, fullDatabaseRefreshFunction } from '../../services/Api';
-import * as dashboardActions from '../actions/dashboardActions';// Redux
+import { GetDeals } from '../../services/Api';
+import * as dashboardActions from '../actions/dashboardActions';
+// Redux
 import { useDispatch, useSelector } from "react-redux";
 
 /**
@@ -16,10 +17,7 @@ export default function* dashboardAsync(action) {
     yield put(dashboardActions.enableLoader());
 
     // how to call api
-    const response = yield call(fullDatabaseRefreshFunction);
-    // const response = yield call(getDeviceList);
-    // mock response
-    // const response = { success: true, data: { id: 1 }, message: 'Success' };
+    const response = yield call(GetDeals);
   
     // console.log('function*getDeviceList :: response', response);
   

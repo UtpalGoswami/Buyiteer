@@ -11,8 +11,9 @@ const images = {
     splashLogo: require('../../assets/images/logo/logo.png'),
 
     // Screen image
-    headerLogo: require('../../assets/images/headerIcon/headerIcon.png')
+    headerLogo: require('../../assets/images/headerIcon/headerIcon.png'),
 
-
+    // Screen image
+    defaultDeal: require('../../assets/images/Default-deal/Default-deal.png'),
 }
 export default images;

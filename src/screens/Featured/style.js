@@ -12,9 +12,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     container: {
-        flex: 0.9,
-        justifyContent: 'center',
-        alignItems: 'center'
+        flex: 0.9
     },
     input: {
         width: '85%',

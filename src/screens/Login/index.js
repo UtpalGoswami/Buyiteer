@@ -17,7 +17,7 @@ import NetInfo from "@react-native-community/netinfo";
 import styles from './style';
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { requestLogin } from '../../redux/actions/loginActions';
+import { requestLogin, onLoginResponse } from '../../redux/actions/loginActions';
 // Images
 import Images from '../../utils/Images';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -50,12 +50,14 @@ const Login = ({ navigation }) => {
     // const spinnerResponse = useSelector(state => state.loginReducer.spinner);
 
     useEffect(async () => {
-        console.log('Final Login Resp : ' + JSON.stringify(loginResponse));
+        // console.log('Final Login Resp : ' + JSON.stringify(loginResponse));
         console.log('loginResponse.status : ' + loginResponse.status);
         if (Object.keys(loginResponse).length !== 0) {
             if (loginResponse.status === 200) {
                 await AsyncStorage.setItem('EmailAddress', email);
                 navigation.navigate('AppNavigator');
+                var setResponse = {}
+                dispatch(onLoginResponse(setResponse));
             } else if (loginResponse.status === 400) {
                 Alert.alert('Error', I18n.t('loginPage.invalidErrorMsg'))
             } else {

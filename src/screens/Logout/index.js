@@ -35,9 +35,15 @@ const Logout = ({ navigation }) => {
     }, [logOutResponse]);
 
     useEffect(async () => {
-        setSpinner(true);
-        // Dispatch login request
-        dispatch(logOut());
+        const unsubscribe = navigation.addListener('focus', async () => {
+            await AsyncStorage.setItem('EmailAddress', '');
+            navigation.navigate('AuthNavigator');
+            // setSpinner(true);
+            // // Dispatch login request
+            // dispatch(logOut());
+        });
+        // Return the function to unsubscribe from the event so it gets removed on unmount
+        return unsubscribe;
     }, []);
 
     return (

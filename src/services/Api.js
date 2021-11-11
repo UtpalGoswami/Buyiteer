@@ -5,6 +5,7 @@ import axios from 'axios';
 
 // common service URL
 const SERVICEURL = 'https://backend.buyiteer.com.au:3000';
+const SERVICEURL1 = 'https://backend.buyiteer.com.au:5000';
 
 /**
 * @function signUp signUp
@@ -186,6 +187,30 @@ export const LogOut = () => {
             .catch((error) => {
                 // handle error
                 console.log('LogOut error : ', error);
+                resolve(error);
+            })
+
+    });
+}
+
+/**
+* @function GetDeals GetDeals
+*/
+export const GetDeals = async () => {
+
+    const URL = SERVICEURL1 + '/deals?size=100&from=0';
+    console.log('GetDeals URL : ' + URL);
+
+    return new Promise(async (resolve, reject) => {
+
+        axios.get(URL)
+            .then((response) => {
+                // console.log("GetDeals Resp : ", JSON.stringify(response.data));
+                resolve(response);
+            })
+            .catch((error) => {
+                // handle error
+                console.log('GetDeals error : ', error);
                 resolve(error);
             })
 

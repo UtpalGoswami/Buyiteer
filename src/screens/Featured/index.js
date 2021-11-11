@@ -13,29 +13,60 @@ import {
 } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import Entypo from 'react-native-vector-icons/Entypo';
+import { colors } from '../../constants';
+import { DealItem, Spinner } from '../../components';
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import { getDeviceList } from '../../redux/actions/dashboardActions';
+// Images
+import Images from '../../utils/Images';
 // Style
 import styles from './style';
-// Import vector icons
-import Icon from 'react-native-vector-icons/FontAwesome';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import Entypo from 'react-native-vector-icons/Entypo';
-import { colors, commonStyles } from '../../constants';
 
 /**
  * @class Featured
  * @param  {Object} navigation - Use for navigation
  */
 export default Featured = ({ navigation }) => {
+
+  /**
+   * @description dispatch {object} - Dispatch Action
+   */
+  const dispatch = useDispatch();
+
+  const [spinner, setSpinner] = useState(false);
   const [forceLocation, setForceLocation] = useState(true);
   const [highAccuracy, setHighAccuracy] = useState(true);
   const [locationDialog, setLocationDialog] = useState(true);
   const [useLocationManager, setUseLocationManager] = useState(false);
   const [location, setLocation] = useState(null);
   const [text, onChangeText] = React.useState();
+  const [selectedId, setSelectedId] = useState(null);
+  const [dealList, setDealList] = useState([]);
+
+  const dealsResponse = useSelector(state => state.dashboardReducer.dealsList);
+  // const spinnerResponse = useSelector(state => state.dashboardReducer.spinner);
 
   useEffect(() => {
     getLocation();
   }, [])
+
+  useEffect(() => {
+    setSpinner(true);
+    dispatch(getDeviceList());
+  }, [])
+
+
+  useEffect(() => {
+    // console.log('Get the deals ::: ' + JSON.stringify(dealsResponse.data));
+    if (dealsResponse.data && dealsResponse.data.length > 0) {
+      setDealList(dealsResponse.data);
+      setSpinner(false);
+    } else {
+      setSpinner(false);
+    }
+  }, [dealsResponse])
 
   const hasPermissionIOS = async () => {
     const openSetting = () => {
@@ -141,6 +172,32 @@ export default Featured = ({ navigation }) => {
     );
   };
 
+  const DATA = [
+    {
+      id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+      title: "First Item",
+    },
+    {
+      id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
+      title: "Second Item",
+    },
+    {
+      id: "58694a0f-3da1-471f-bd96-145571e29d72",
+      title: "Third Item",
+    },
+  ];
+
+  const renderItem = ({ item }) => {
+    return (
+      <DealItem
+        item={item._source}
+        onPress={() => {
+          console.log('..Go to Details..');
+        }}
+      />
+    );
+  };
+
   return (
     <SafeAreaView style={styles.safeView}>
 
@@ -176,9 +233,17 @@ export default Featured = ({ navigation }) => {
           value={text}
         />
       </View>
-      <View style={styles.container}>
 
-      </View>
+      {spinner || dealList.length === 0 ? <Spinner color={colors.blue} /> :
+        <View style={styles.container}>
+          <FlatList
+            data={dealList}
+            renderItem={renderItem}
+            keyExtractor={(item) => item._id}
+            extraData={selectedId}
+          />
+        </View>
+      }
     </SafeAreaView>
   );
 }

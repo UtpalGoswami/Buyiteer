@@ -29,7 +29,7 @@ function CustomDrawerContent(props) {
             name="user"
             size={30}
           />
-          <Text style={{ color: colors.white, fontSize: 16, fontWeight: '500', marginTop: 10 }}>utpal.goswami.39@gmail.com</Text>
+          <Text style={{ color: colors.white, fontSize: 16, fontWeight: '500', marginTop: 10 }}>deepak6sp@gmail.com</Text>
         </View>
         <View>
           <DrawerItemList {...props} />
