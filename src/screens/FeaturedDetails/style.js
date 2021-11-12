@@ -18,13 +18,13 @@ const styles = StyleSheet.create({
         margin: 15
     },
     title1: {
-        fontSize: 12,
+        fontSize: 13,
         color: colors.gray,
         fontWeight: '900',
         marginTop : 15
     },
     title: {
-        fontSize: 12,
+        fontSize: 13,
         color: colors.gray,
         marginTop : 10
     },
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         height: 60
     },
     distance: {
-        fontSize: 12,
+        fontSize: 13,
         color: colors.gray,
         marginTop: 6
     },

@@ -10,7 +10,8 @@ import {
   View,
   StatusBar,
   ImageBackground,
-  TouchableOpacity
+  TouchableOpacity,
+  Share
 } from 'react-native';
 import { colors } from '../../constants';
 import { DealItem, Spinner } from '../../components';
@@ -25,6 +26,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import moment from 'moment';
 import Geolocation from 'react-native-geolocation-service';
 import getDirections from 'react-native-google-maps-directions';
+import { getDistance, getPreciseDistance } from 'geolib';
 
 /**
  * @class FeaturedDetails
@@ -164,6 +166,20 @@ export default FeaturedDetails = ({ route, navigation }) => {
     );
   };
 
+  const calculatePreciseDistance = (storeLocation, userLocation) => {
+    var pdis = getPreciseDistance(
+      {
+        latitude: userLocation.latitude,
+        longitude: userLocation.longitude
+      },
+      {
+        latitude: storeLocation.lat,
+        longitude: storeLocation.lon
+      },
+    );
+    return (pdis / 1000).toFixed(2) + ' kms'
+  };
+
   const handleGetDirections = (storeLocation) => {
     const data = {
       source: {
@@ -225,6 +241,27 @@ export default FeaturedDetails = ({ route, navigation }) => {
     }
   };
 
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        title: 'Buyiteer',
+        message: 'Please install this app and stay safe , AppLink :https://play.google.com/store/apps/details?id=123',
+        url: 'https://play.google.com/store/apps/details?id=123'
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.safeView}>
 
@@ -247,14 +284,13 @@ export default FeaturedDetails = ({ route, navigation }) => {
             size={30}
             color={colors.white}
             onPress={() => {
-              console.log('..Share the App..');
+              onShare();
             }} />
         </View>
       </View>
 
-      {spinner || Object.keys(details).length === 0 ? <Spinner color={colors.blue} /> :
+      {spinner || Object.keys(details).length === 0 || location == null ? <Spinner color={colors.blue} /> :
         <View style={styles.container}>
-
           <View>
             <View style={styles.imageView}>
               <ImageBackground
@@ -273,8 +309,8 @@ export default FeaturedDetails = ({ route, navigation }) => {
               <Text style={styles.title}>{details.deal.definition.length > 100 ? details.deal.definition.slice(0, 100) + '...' : details.deal.definition}</Text>
 
               <Text style={styles.title1}>More info</Text>
-              <Text style={styles.validTime}>Valid until {moment(details.deal.duration.endDateTime).format("dd-mm-yyyy")}</Text>
-              <Text style={styles.distance}>Distance: {details.store.place}</Text>
+              <Text style={styles.validTime}>Valid until {moment(details.deal.duration.endDateTime).format("DD-MM-YYYY")}</Text>
+              <Text style={styles.distance}>Distance: {calculatePreciseDistance(details.store.location, location)}</Text>
             </View>
 
           </View>
