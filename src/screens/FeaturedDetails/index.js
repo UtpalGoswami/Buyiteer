@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Alert,
   Linking,
@@ -11,13 +11,13 @@ import {
   StatusBar,
   ImageBackground,
   TouchableOpacity,
-  Share
+  Share,
 } from 'react-native';
-import { colors } from '../../constants';
-import { DealItem, Spinner } from '../../components';
+import {colors} from '../../constants';
+import {DealItem, Spinner} from '../../components';
 // Redux
-import { useDispatch, useSelector } from "react-redux";
-import { getDeviceList } from '../../redux/actions/dashboardActions';
+import {useDispatch, useSelector} from 'react-redux';
+import {getDeviceList} from '../../redux/actions/dashboardActions';
 // Images
 import Images from '../../utils/Images';
 // Style
@@ -26,20 +26,19 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import moment from 'moment';
 import Geolocation from 'react-native-geolocation-service';
 import getDirections from 'react-native-google-maps-directions';
-import { getDistance, getPreciseDistance } from 'geolib';
+import {getDistance, getPreciseDistance} from 'geolib';
 
 /**
  * @class FeaturedDetails
  * @param  {Object} navigation - Use for navigation
  */
-export default FeaturedDetails = ({ route, navigation }) => {
-
+export default FeaturedDetails = ({route, navigation}) => {
   /**
    * @description dispatch {object} - Dispatch Action
    */
   const dispatch = useDispatch();
 
-  const { item } = route.params;
+  const {item} = route.params;
 
   const [spinner, setSpinner] = useState(false);
   const [details, setDetails] = useState({});
@@ -48,6 +47,8 @@ export default FeaturedDetails = ({ route, navigation }) => {
   const [locationDialog, setLocationDialog] = useState(true);
   const [useLocationManager, setUseLocationManager] = useState(false);
   const [location, setLocation] = useState(null);
+  const [isViewDeal, setIsViewDeal] = useState(true);
+  const [displayCode, setDisplayCode] = useState(false);
 
   const dealsResponse = useSelector(state => state.dashboardReducer.dealsList);
   // const spinnerResponse = useSelector(state => state.dashboardReducer.spinner);
@@ -83,8 +84,8 @@ export default FeaturedDetails = ({ route, navigation }) => {
         `Turn on Location Services to allow Buyiteer to determine your location.`,
         '',
         [
-          { text: 'Go to Settings', onPress: openSetting },
-          { text: "Don't Use Location", onPress: () => { } },
+          {text: 'Go to Settings', onPress: openSetting},
+          {text: "Don't Use Location", onPress: () => {}},
         ],
       );
     }
@@ -141,11 +142,11 @@ export default FeaturedDetails = ({ route, navigation }) => {
     }
 
     Geolocation.getCurrentPosition(
-      (position) => {
+      position => {
         setLocation(position.coords);
         console.log('position : ' + JSON.stringify(position.coords));
       },
-      (error) => {
+      error => {
         Alert.alert(`Code ${error.code}`, error.message);
         setLocation(null);
         console.log(error);
@@ -170,35 +171,35 @@ export default FeaturedDetails = ({ route, navigation }) => {
     var pdis = getPreciseDistance(
       {
         latitude: userLocation.latitude,
-        longitude: userLocation.longitude
+        longitude: userLocation.longitude,
       },
       {
         latitude: storeLocation.lat,
-        longitude: storeLocation.lon
+        longitude: storeLocation.lon,
       },
     );
-    return (pdis / 1000).toFixed(2) + ' kms'
+    return (pdis / 1000).toFixed(2) + ' kms';
   };
 
-  const handleGetDirections = (storeLocation) => {
+  const handleGetDirections = storeLocation => {
     const data = {
       source: {
         latitude: location.latitude,
-        longitude: location.longitude
+        longitude: location.longitude,
       },
       destination: {
         latitude: storeLocation.lat,
-        longitude: storeLocation.lon
+        longitude: storeLocation.lon,
       },
       params: [
         {
-          key: "travelmode",
-          value: "driving"        // may be "walking", "bicycling" or "transit" as well
+          key: 'travelmode',
+          value: 'driving', // may be "walking", "bicycling" or "transit" as well
         },
         {
-          key: "dir_action",
-          value: "navigate"       // this instantly initializes navigation using the given travel mode
-        }
+          key: 'dir_action',
+          value: 'navigate', // this instantly initializes navigation using the given travel mode
+        },
       ],
       // waypoints: [
       //   {
@@ -214,22 +215,21 @@ export default FeaturedDetails = ({ route, navigation }) => {
       //     longitude: 18.697493
       //   }
       // ]
-    }
-    getDirections(data)
-  }
+    };
+    getDirections(data);
+  };
 
-  const dialCall = (number) => {
+  const dialCall = number => {
     let phoneNumber = '';
     if (Platform.OS === 'android') {
       phoneNumber = 'tel:${' + number + '}';
-    }
-    else {
+    } else {
       phoneNumber = 'telprompt:${' + number + '}';
     }
     Linking.openURL(phoneNumber);
   };
 
-  const OpenURLButton = async ({ url }) => {
+  const OpenURLButton = async ({url}) => {
     // Checking if the link is supported for links with custom URL scheme.
     const supported = await Linking.canOpenURL(url);
     if (supported) {
@@ -245,8 +245,9 @@ export default FeaturedDetails = ({ route, navigation }) => {
     try {
       const result = await Share.share({
         title: 'Buyiteer',
-        message: 'Please install this app and stay safe , AppLink :https://play.google.com/store/apps/details?id=123',
-        url: 'https://play.google.com/store/apps/details?id=123'
+        message:
+          'Please install this app and stay safe , AppLink :https://play.google.com/store/apps/details?id=123',
+        url: 'https://play.google.com/store/apps/details?id=123',
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
@@ -264,91 +265,139 @@ export default FeaturedDetails = ({ route, navigation }) => {
 
   return (
     <SafeAreaView style={styles.safeView}>
-
-      <View style={{ marginVertical: 10, flexDirection: 'row' }}>
-        <View style={{ flex: 0.1, marginStart: 5 }}>
+      <View style={{marginVertical: 10, flexDirection: 'row'}}>
+        <View style={{flex: 0.1, marginStart: 5}}>
           <Ionicons
             name="arrow-back"
             size={30}
             color={colors.white}
             onPress={() => {
               navigation.goBack();
-            }} />
+            }}
+          />
         </View>
-        <View style={{ flex: 0.8, alignItems: 'center' }}>
+        <View style={{flex: 0.8, alignItems: 'center'}}>
           <Text style={styles.headerText}>Buyiteer</Text>
         </View>
-        <View style={{ flex: 0.1, marginEnd: 5 }}>
+        <View style={{flex: 0.1, marginEnd: 5}}>
           <Ionicons
             name="share-social"
             size={30}
             color={colors.white}
             onPress={() => {
               onShare();
-            }} />
+            }}
+          />
         </View>
       </View>
 
-      {spinner || Object.keys(details).length === 0 || location == null ? <Spinner color={colors.blue} /> :
+      {spinner || Object.keys(details).length === 0 || location == null ? (
+        <Spinner color={colors.blue} />
+      ) : (
         <View style={styles.container}>
-          <View>
-            <View style={styles.imageView}>
-              <ImageBackground
-                style={styles.bgImage}
-                source={{
-                  uri: details.deal.image !== null ? details.deal.image : Images.defaultDeal,
-                }}>
-                <Image
-                  source={{ uri: details.store.logo.url }}
-                  style={styles.logo} />
-              </ImageBackground>
-            </View>
-
-            <View style={styles.details}>
-              <Text style={styles.title1}>What you get</Text>
-              <Text style={styles.title}>{details.deal.definition.length > 100 ? details.deal.definition.slice(0, 100) + '...' : details.deal.definition}</Text>
-
-              <Text style={styles.title1}>More info</Text>
-              <Text style={styles.validTime}>Valid until {moment(details.deal.duration.endDateTime).format("DD-MM-YYYY")}</Text>
-              <Text style={styles.distance}>Distance: {calculatePreciseDistance(details.store.location, location)}</Text>
-            </View>
-
-          </View>
-
-          <View style={styles.BtmImagesView}>
-            <TouchableOpacity
-              onPress={() => {
-                handleGetDirections(details.store.location);
-              }} >
-              <Image
-                source={Images.direction}
-                style={styles.logo} />
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={() => {
-                dialCall(details.store.phone);
+          <View style={styles.imageView}>
+            <ImageBackground
+              style={styles.bgImage}
+              source={{
+                uri:
+                  details.deal.image !== null
+                    ? details.deal.image
+                    : Images.defaultDeal,
               }}>
               <Image
-                source={Images.call}
-                style={styles.logo} />
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => {
-              OpenURLButton(details.store.website);
-            }}>
-              <Image
-                source={Images.www}
-                style={styles.logo} />
-            </TouchableOpacity>
+                source={{uri: details.store.logo.url}}
+                style={styles.logo}
+              />
+            </ImageBackground>
           </View>
 
-          <View style={styles.BottomView}>
+          {isViewDeal ? (
+            <View style={{flex: 0.5, justifyContent: 'space-between'}}>
+              <View style={styles.details}>
+                <Text style={styles.title1}>What you get</Text>
+                <Text style={styles.title}>
+                  {details.deal.definition.length > 100
+                    ? details.deal.definition.slice(0, 100) + '...'
+                    : details.deal.definition}
+                </Text>
 
+                <Text style={styles.title1}>More info</Text>
+                <Text style={styles.validTime}>
+                  Valid until{' '}
+                  {moment(details.deal.duration.endDateTime).format(
+                    'DD-MM-YYYY',
+                  )}
+                </Text>
+                <Text style={styles.distance}>
+                  Distance:{' '}
+                  {calculatePreciseDistance(details.store.location, location)}
+                </Text>
+              </View>
+
+              <View style={styles.BtmImagesView}>
+                <TouchableOpacity
+                  onPress={() => {
+                    handleGetDirections(details.store.location);
+                  }}>
+                  <Image source={Images.direction} style={styles.logo} />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={() => {
+                    dialCall(details.store.phone);
+                  }}>
+                  <Image source={Images.call} style={styles.logo} />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={() => {
+                    OpenURLButton(details.store.website);
+                  }}>
+                  <Image source={Images.www} style={styles.logo} />
+                </TouchableOpacity>
+              </View>
+            </View>
+          ) : (
+            <View style={{flex: 0.5, alignItems: 'center', marginTop: 35}}>
+              <View>
+                <Text
+                  style={{color: colors.gray, fontWeight: '900', fontSize: 13}}>
+                  Expire in
+                </Text>
+                <Text style={{color: colors.gray}}>Expire in time</Text>
+              </View>
+
+              {!displayCode ? (
+                <TouchableOpacity
+                  style={styles.SlideBtn}
+                  onPress={() => {
+                    setDisplayCode(true);
+                    console.log('Display Code');
+                  }}>
+                  <Text style={styles.SlideBtnText}>
+                    SLIDE LEFT TO DISPLAY CODE
+                  </Text>
+                </TouchableOpacity>
+              ) : (
+                <View style={styles.ShowCodeView}>
+                  <Text style={styles.ShowCodeBtnText}>
+                    {details.deal.redemptionCode}
+                  </Text>
+                </View>
+              )}
+              <Text style={{color: colors.gray, marginTop: 10}}>
+                Show / Enter this code at checkout
+              </Text>
+            </View>
+          )}
+
+          <View style={styles.BottomView}>
             <TouchableOpacity
               style={styles.InnerView}
               onPress={() => {
-                console.log('View deal');
+                setIsViewDeal(true);
+                setDisplayCode(false);
+                 console.log('View deal');
               }}>
               <Text style={styles.InnerText}>View deal</Text>
             </TouchableOpacity>
@@ -356,15 +405,13 @@ export default FeaturedDetails = ({ route, navigation }) => {
             <TouchableOpacity
               style={styles.InnerView}
               onPress={() => {
-                console.log('Get it now !');
+                setIsViewDeal(false), console.log('Get it now !');
               }}>
               <Text style={styles.InnerText}>Get it now !</Text>
             </TouchableOpacity>
-
           </View>
-
         </View>
-      }
+      )}
     </SafeAreaView>
   );
-}
+};
