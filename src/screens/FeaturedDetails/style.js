@@ -12,11 +12,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   imageView: {
-    flex: 0.4,
-    // height: 250,
+    flex: 1,
+    width: null,
+    height: null,
   },
   details: {
-    margin: 15,
+    margin: 15
   },
   title1: {
     fontSize: 13,
@@ -57,10 +58,9 @@ const styles = StyleSheet.create({
   BtmImagesView: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginBottom: 70,
+    marginBottom: 70
   },
   BottomView: {
-    flex: 0.1,
     backgroundColor: colors.appCommonColor,
     justifyContent: 'space-between',
     flexDirection: 'row',
@@ -82,13 +82,13 @@ const styles = StyleSheet.create({
     height: 60,
     backgroundColor: colors.appCommonColor,
     justifyContent: 'center',
-    borderRadius: 15,
+    borderRadius: 10,
     width : '80%'
   },
   SlideBtnText: {
-    paddingHorizontal: 30,
+    paddingHorizontal: 25,
     color: colors.white,
-    fontSize: 14,
+    fontSize: 15,
     fontWeight: '900',
   },
   ShowCodeView: {

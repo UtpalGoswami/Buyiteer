@@ -34,7 +34,25 @@ const styles = StyleSheet.create({
         color: colors.appCommonColor,
         fontSize: 18,
         fontWeight: '500'
-    }
+    },
+    footer: {
+        padding: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+      },
+      loadMoreBtn: {
+        padding: 10,
+        borderRadius: 4,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      btnText: {
+        color: colors.appCommonColor,
+        fontSize: 15,
+        textAlign: 'center',
+      },
 });
 
 export default styles;

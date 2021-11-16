@@ -7,6 +7,11 @@ const initialState = {
   limit: 10,
   offset: 10,
   spinner: false,
+  size : 10,
+  from : 0,
+  lat : '',
+  long : '',
+  searchPhrase : '',
   dealsList: {},
   deviceDetailsResponse: {},
 };
@@ -20,6 +25,11 @@ export default function dashboardReducer(state = initialState, action) {
     case types.GET_DEVICE_REQUEST:
       return {
         ...state,
+        size : action.size,
+        from : action.from,
+        lat : action.lat,
+        long : action.long,
+        searchPhrase : action.searchPhrase,
         spinner: true,
       };
     case types.DASHBOARD_ENABLE_LOADER:

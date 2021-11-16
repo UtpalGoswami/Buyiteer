@@ -8,9 +8,14 @@ import * as types from './types';
  * @description getDeviceList - get Device List request
  * @param  {string} token - User token for get device list request
  */
-export function getDeviceList() {
+export function getDeviceList(size, from, lat, long, searchPhrase) {
   return {
     type: types.GET_DEVICE_REQUEST,
+    size,
+    from,
+    lat,
+    long,
+    searchPhrase,
   };
 }
 
@@ -33,7 +38,6 @@ export function getDeviceResponse(response) {
     response,
   };
 }
-
 
 /**
  * @description enableLoader - enable Loader

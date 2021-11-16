@@ -295,121 +295,130 @@ export default FeaturedDetails = ({route, navigation}) => {
         <Spinner color={colors.blue} />
       ) : (
         <View style={styles.container}>
-          <View style={styles.imageView}>
-            <ImageBackground
-              style={styles.bgImage}
-              source={{
-                uri:
-                  details.deal.image !== null
-                    ? details.deal.image
-                    : Images.defaultDeal,
-              }}>
-              <Image
-                source={{uri: details.store.logo.url}}
-                style={styles.logo}
-              />
-            </ImageBackground>
+          
+          <View style={{flex : 0.36}}>
+            <View style={styles.imageView}>
+              <ImageBackground
+                style={styles.bgImage}
+                source={{
+                  uri:
+                    details.deal.image !== null
+                      ? details.deal.image
+                      : Images.defaultDeal,
+                }}>
+                <Image
+                  source={{uri: details.store.logo.url}}
+                  style={styles.logo}
+                />
+              </ImageBackground>
+            </View>
           </View>
 
-          {isViewDeal ? (
-            <View style={{flex: 0.5, justifyContent: 'space-between'}}>
-              <View style={styles.details}>
-                <Text style={styles.title1}>What you get</Text>
-                <Text style={styles.title}>
-                  {details.deal.definition.length > 100
-                    ? details.deal.definition.slice(0, 100) + '...'
-                    : details.deal.definition}
-                </Text>
-
-                <Text style={styles.title1}>More info</Text>
-                <Text style={styles.validTime}>
-                  Valid until{' '}
-                  {moment(details.deal.duration.endDateTime).format(
-                    'DD-MM-YYYY',
-                  )}
-                </Text>
-                <Text style={styles.distance}>
-                  Distance:{' '}
-                  {calculatePreciseDistance(details.store.location, location)}
-                </Text>
-              </View>
-
-              <View style={styles.BtmImagesView}>
-                <TouchableOpacity
-                  onPress={() => {
-                    handleGetDirections(details.store.location);
-                  }}>
-                  <Image source={Images.direction} style={styles.logo} />
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  onPress={() => {
-                    dialCall(details.store.phone);
-                  }}>
-                  <Image source={Images.call} style={styles.logo} />
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  onPress={() => {
-                    OpenURLButton(details.store.website);
-                  }}>
-                  <Image source={Images.www} style={styles.logo} />
-                </TouchableOpacity>
-              </View>
-            </View>
-          ) : (
-            <View style={{flex: 0.5, alignItems: 'center', marginTop: 35}}>
-              <View>
-                <Text
-                  style={{color: colors.gray, fontWeight: '900', fontSize: 13}}>
-                  Expire in
-                </Text>
-                <Text style={{color: colors.gray}}>Expire in time</Text>
-              </View>
-
-              {!displayCode ? (
-                <TouchableOpacity
-                  style={styles.SlideBtn}
-                  onPress={() => {
-                    setDisplayCode(true);
-                    console.log('Display Code');
-                  }}>
-                  <Text style={styles.SlideBtnText}>
-                    SLIDE LEFT TO DISPLAY CODE
+          <View style={{flex : 0.64, justifyContent : 'space-between'}}>
+            {isViewDeal ? (
+              <View style={{ flex : 1, justifyContent : 'space-between'}}>
+                <View style={styles.details}>
+                  <Text style={styles.title1}>What you get</Text>
+                  <Text style={styles.title}>
+                    {details.deal.definition.length > 100
+                      ? details.deal.definition.slice(0, 100) + '...'
+                      : details.deal.definition}
                   </Text>
-                </TouchableOpacity>
-              ) : (
-                <View style={styles.ShowCodeView}>
-                  <Text style={styles.ShowCodeBtnText}>
-                    {details.deal.redemptionCode}
+
+                  <Text style={styles.title1}>More info</Text>
+                  <Text style={styles.validTime}>
+                    Valid until{' '}
+                    {moment(details.deal.duration.endDateTime).format(
+                      'DD-MM-YYYY',
+                    )}
+                  </Text>
+                  <Text style={styles.distance}>
+                    Distance:{' '}
+                    {calculatePreciseDistance(details.store.location, location)}
                   </Text>
                 </View>
-              )}
-              <Text style={{color: colors.gray, marginTop: 10}}>
-                Show / Enter this code at checkout
-              </Text>
+
+                <View style={styles.BtmImagesView}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      handleGetDirections(details.store.location);
+                    }}>
+                    <Image source={Images.direction} style={styles.logo} />
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    onPress={() => {
+                      dialCall(details.store.phone);
+                    }}>
+                    <Image source={Images.call} style={styles.logo} />
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    onPress={() => {
+                      OpenURLButton(details.store.website);
+                    }}>
+                    <Image source={Images.www} style={styles.logo} />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            ) : (
+              <View style={{alignItems: 'center', marginTop: 35}}>
+                <View>
+                  <Text
+                    style={{
+                      color: colors.gray,
+                      fontWeight: '900',
+                      fontSize: 13,
+                    }}>
+                    Expires in
+                  </Text>
+                  <Text style={{color: colors.gray}}>Expire in time</Text>
+                </View>
+
+                {!displayCode ? (
+                  <TouchableOpacity
+                    style={styles.SlideBtn}
+                    onPress={() => {
+                      setDisplayCode(true);
+                      console.log('Display Code');
+                    }}>
+                    <Text style={styles.SlideBtnText}>
+                      SLIDE LEFT TO DISPLAY CODE
+                    </Text>
+                  </TouchableOpacity>
+                ) : (
+                  <View style={styles.ShowCodeView}>
+                    <Text style={styles.ShowCodeBtnText}>
+                      {details.deal.redemptionCode}
+                    </Text>
+                  </View>
+                )}
+                <Text style={{color: colors.gray, marginTop: 10}}>
+                  Show / Enter this code at checkout
+                </Text>
+              </View>
+            )}
+
+            <View style={styles.BottomView}>
+              <TouchableOpacity
+                style={styles.InnerView}
+                onPress={() => {
+                  setIsViewDeal(true);
+                  setDisplayCode(false);
+                }}>
+                <Text style={styles.InnerText}>View deal</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.InnerView}
+                onPress={() => {
+                  setIsViewDeal(false);
+                }}>
+                <Text style={styles.InnerText}>Get it now !</Text>
+              </TouchableOpacity>
             </View>
-          )}
-
-          <View style={styles.BottomView}>
-            <TouchableOpacity
-              style={styles.InnerView}
-              onPress={() => {
-                setIsViewDeal(true);
-                setDisplayCode(false);
-                 console.log('View deal');
-              }}>
-              <Text style={styles.InnerText}>View deal</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.InnerView}
-              onPress={() => {
-                setIsViewDeal(false), console.log('Get it now !');
-              }}>
-              <Text style={styles.InnerText}>Get it now !</Text>
-            </TouchableOpacity>
           </View>
+
         </View>
       )}
     </SafeAreaView>
