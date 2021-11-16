@@ -30,12 +30,23 @@ export function getDeviceFailed() {
 
 /**
  * @description  getDeviceResponse - get Device List failed action
- * @param  {object} response - Login Response
+ * @param  {object} response - deal Response
  */
 export function getDeviceResponse(response) {
   return {
     type: types.GET_DEVICE_RESPONSE,
     response,
+  };
+}
+
+/**
+ * @description  refreshLocation - Refresh the location
+ * @param  {location} location - locarion Response
+ */
+ export function refreshLocation(location) {
+  return {
+    type: types.REFRESH_LOCATION,
+    location
   };
 }
 

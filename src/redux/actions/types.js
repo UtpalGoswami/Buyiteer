@@ -93,6 +93,8 @@ export const PUSH_NOTIFICATION_SUBSCRIBE_REQUEST = 'PUSH_NOTIFICATION_SUBSCRIBE_
 export const PUSH_NOTIFICATION_SUBSCRIBE_RESPONSE = 'PUSH_NOTIFICATION_SUBSCRIBE_RESPONSE';
 // const variable for notification count
 export const PUSH_NOTIFICATION_COUNT = 'PUSH_NOTIFICATION_COUNT';
+// const variable for refresh the location
+export const REFRESH_LOCATION = 'REFRESH_LOCATION';
 
 // setting
 // const variable for enable loader 

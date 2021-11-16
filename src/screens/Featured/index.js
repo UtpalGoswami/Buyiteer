@@ -21,11 +21,15 @@ import {useDispatch, useSelector} from 'react-redux';
 import {
   getDeviceList,
   getDeviceResponse,
+  refreshLocation,
 } from '../../redux/actions/dashboardActions';
 // Images
 import Images from '../../utils/Images';
 // Style
 import styles from './style';
+import Geocoder from 'react-native-geocoder';
+
+const API_KEY = 'AIzaSyCoOSAYqfkrSCKCupmG9uF-wUsPGKw2FaI';
 
 /**
  * @class Featured
@@ -53,13 +57,18 @@ export default Featured = ({navigation}) => {
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
   const [searchPhrase, setSearchPhrase] = useState('');
+  const [subLocality, setSubLocality] = useState('Current Location');
 
   const dealsResponse = useSelector(state => state.dashboardReducer.dealsList);
   // const spinnerResponse = useSelector(state => state.dashboardReducer.spinner);
+  const getUpdateLocation = useSelector(
+    state => state.dashboardReducer.location,
+  );
 
   useEffect(() => {
     getLocation(0);
   }, []);
+
 
   useEffect(() => {
     // console.log('Get the deals ::: ' + JSON.stringify(dealsResponse.data));
@@ -78,6 +87,32 @@ export default Featured = ({navigation}) => {
       setLoading(false);
     }
   }, [dealsResponse]);
+
+  useEffect(() => {
+    if (Object.keys(getUpdateLocation).length !== 0) {
+      console.log(
+        '..Finally Update the location.. : ' +
+          JSON.stringify(getUpdateLocation),
+      );
+
+      setSpinner(true);
+      getPlaceName(getUpdateLocation.latitude, getUpdateLocation.longitude);
+      setTimeout(() => {
+        dispatch(
+          getDeviceList(
+            size,
+            from,
+            getUpdateLocation.latitude,
+            getUpdateLocation.longitude,
+            searchPhrase,
+          ),
+        );
+      }, 500);
+
+      var setResponse = {};
+      dispatch(refreshLocation(setResponse));
+    }
+  }, [getUpdateLocation]);
 
   const onRefresh = async () => {
     console.log('..Pull To Refresh..');
@@ -181,6 +216,8 @@ export default Featured = ({navigation}) => {
               searchPhrase,
             ),
           );
+
+          getPlaceName(position.coords.latitude, position.coords.longitude);
         } else {
           dispatch(
             getDeviceList(size, from, latitude, longitude, searchPhrase),
@@ -206,6 +243,25 @@ export default Featured = ({navigation}) => {
         showLocationDialog: locationDialog,
       },
     );
+  };
+
+  const getPlaceName = async (lat, lng) => {
+    // simply add your google key
+    Geocoder.fallbackToGoogle(API_KEY);
+    // use the lib as usual
+    let ret = await Geocoder.geocodePosition({lat, lng});
+    let address = ret[0];
+    if (
+      address.hasOwnProperty('subLocality') &&
+      address.subLocality != '' &&
+      address.subLocality != null
+    ) {
+      setSubLocality(address.streetName);
+    } else {
+      var setLocality = address.formattedAddress.split(',');
+      setSubLocality(setLocality[0]);
+    }
+    console.log('Get Place Name : ' + JSON.stringify(ret[0]));
   };
 
   const searchDeals = () => {
@@ -264,7 +320,7 @@ export default Featured = ({navigation}) => {
             }}
           />
         </View>
-        <View style={{flex: 0.9, justifyContent: 'center'}}>
+        <View style={{flex: 0.8}}>
           <TouchableOpacity
             onPress={() => navigation.navigate('Location')}
             style={styles.locationHeader}>
@@ -273,7 +329,9 @@ export default Featured = ({navigation}) => {
               size={25}
               color={colors.appCommonColor}
             />
-            <Text style={styles.headerText}>Current Location</Text>
+            <Text numberOfLines={1} style={styles.headerText}>
+              {subLocality}
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

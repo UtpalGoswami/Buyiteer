@@ -6,6 +6,7 @@ import axios from 'axios';
 // common service URL
 const SERVICEURL = 'https://backend.buyiteer.com.au:3000';
 const SERVICEURL1 = 'https://backend.buyiteer.com.au:5000';
+const PLACES_API_URL = "https://maps.googleapis.com/maps/api/place/autocomplete/json";
 
 /**
  * @function signUp signUp
@@ -187,6 +188,33 @@ export const LogOut = () => {
         console.log('LogOut error : ', error);
         resolve(error);
       });
+  });
+};
+
+/**
+ * @function SpecifyLocation Specify Location
+ */
+ export const SpecifyLocation = (terms) => {
+  const URL = PLACES_API_URL +
+  "?input=" + encodeURIComponent(terms.trim()) +
+  "&components=country:aus" +
+  "&types=(regions)&key=AIzaSyCoOSAYqfkrSCKCupmG9uF-wUsPGKw2FaI";
+
+  console.log('SpecifyLocation URL : ' + URL);
+
+  return new Promise(async (resolve, reject) => {
+    axios.get(URL)
+    .then(response => {
+      console.log("SpecifyLocation Resp : ", JSON.stringify(response.data));
+      resolve(response);
+    })
+    .catch(error => {
+      // handle error
+      console.log('SpecifyLocation error : ', error);
+      resolve(error);
+    });
+
+
   });
 };
 

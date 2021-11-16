@@ -23,5 +23,20 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
       </activity>
+      <activity
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data
+              android:host="buyiteer.com"
+              android:pathPrefix="/"
+              android:scheme="https" />
+            <data
+              android:host="buyiteer.com"
+              android:pathPrefix="/"
+              android:scheme="http" />
+        </intent-filter>
+      </activity>
     </application>
 </manifest>

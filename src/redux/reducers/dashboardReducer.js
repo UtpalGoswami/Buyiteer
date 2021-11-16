@@ -13,6 +13,7 @@ const initialState = {
   long : '',
   searchPhrase : '',
   dealsList: {},
+  location: {},
   deviceDetailsResponse: {},
 };
 
@@ -64,6 +65,12 @@ export default function dashboardReducer(state = initialState, action) {
       return {
         ...state,
         deviceDetailsResponse: {},
+        spinner: false,
+      };
+    case types.REFRESH_LOCATION:
+      return {
+        ...state,
+        location: action.location,
         spinner: false,
       };
     case types.GET_DEVICE_FAILED:

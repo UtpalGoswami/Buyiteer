@@ -263,6 +263,21 @@ export default FeaturedDetails = ({route, navigation}) => {
     }
   };
 
+  const calExpires = date => {
+    let expiration = date;
+    const now = moment();
+    const exp = moment(expiration);
+    // console.log(exp.format());
+    
+    var days = exp.diff(now, 'days');
+    var hours = exp.subtract(days, 'days').diff(now, 'hours');
+    var minutes = exp.subtract(hours, 'hours').diff(now, 'minutes');
+    var seconds = exp.subtract(minutes, 'minutes').diff(now, 'seconds');
+
+    // console.log(days, hours, minutes);
+    return days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's';
+  };
+
   return (
     <SafeAreaView style={styles.safeView}>
       <View style={{marginVertical: 10, flexDirection: 'row'}}>
@@ -295,8 +310,7 @@ export default FeaturedDetails = ({route, navigation}) => {
         <Spinner color={colors.blue} />
       ) : (
         <View style={styles.container}>
-          
-          <View style={{flex : 0.36}}>
+          <View style={{flex: 0.36}}>
             <View style={styles.imageView}>
               <ImageBackground
                 style={styles.bgImage}
@@ -314,9 +328,9 @@ export default FeaturedDetails = ({route, navigation}) => {
             </View>
           </View>
 
-          <View style={{flex : 0.64, justifyContent : 'space-between'}}>
+          <View style={{flex: 0.64, justifyContent: 'space-between'}}>
             {isViewDeal ? (
-              <View style={{ flex : 1, justifyContent : 'space-between'}}>
+              <View style={{flex: 1, justifyContent: 'space-between'}}>
                 <View style={styles.details}>
                   <Text style={styles.title1}>What you get</Text>
                   <Text style={styles.title}>
@@ -363,7 +377,7 @@ export default FeaturedDetails = ({route, navigation}) => {
               </View>
             ) : (
               <View style={{alignItems: 'center', marginTop: 35}}>
-                <View>
+                <View style={{alignItems: 'center'}}>
                   <Text
                     style={{
                       color: colors.gray,
@@ -372,7 +386,9 @@ export default FeaturedDetails = ({route, navigation}) => {
                     }}>
                     Expires in
                   </Text>
-                  <Text style={{color: colors.gray}}>Expire in time</Text>
+                  <Text style={{color: colors.gray}}>
+                    {calExpires(details.deal.duration.endDateTime)}
+                  </Text>
                 </View>
 
                 {!displayCode ? (
@@ -418,7 +434,6 @@ export default FeaturedDetails = ({route, navigation}) => {
               </TouchableOpacity>
             </View>
           </View>
-
         </View>
       )}
     </SafeAreaView>
