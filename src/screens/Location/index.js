@@ -234,6 +234,7 @@ export default Location = ({ navigation }) => {
               },
               textInput: {
                 fontSize: 17,
+                color : colors.gray
               },
               predefinedPlacesDescription: {
                 color: colors.lightGrey,
