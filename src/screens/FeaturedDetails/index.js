@@ -27,6 +27,7 @@ import moment from 'moment';
 import Geolocation from 'react-native-geolocation-service';
 import getDirections from 'react-native-google-maps-directions';
 import {getDistance, getPreciseDistance} from 'geolib';
+import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 
 /**
  * @class FeaturedDetails
@@ -268,7 +269,7 @@ export default FeaturedDetails = ({route, navigation}) => {
     const now = moment();
     const exp = moment(expiration);
     // console.log(exp.format());
-    
+
     var days = exp.diff(now, 'days');
     var hours = exp.subtract(days, 'days').diff(now, 'hours');
     var minutes = exp.subtract(hours, 'hours').diff(now, 'minutes');
