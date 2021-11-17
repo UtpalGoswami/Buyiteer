@@ -278,7 +278,7 @@ export default Featured = ({navigation}) => {
         item={item._source}
         onPress={() => {
           navigation.navigate('FeaturedDetails', {
-            item: item._source,
+            id : item._source.sourceDealId
           });
         }}
       />

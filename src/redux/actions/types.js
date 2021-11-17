@@ -95,6 +95,12 @@ export const PUSH_NOTIFICATION_SUBSCRIBE_RESPONSE = 'PUSH_NOTIFICATION_SUBSCRIBE
 export const PUSH_NOTIFICATION_COUNT = 'PUSH_NOTIFICATION_COUNT';
 // const variable for refresh the location
 export const REFRESH_LOCATION = 'REFRESH_LOCATION';
+// const variable for get tattlebox list request
+export const GET_DEAL_DETAILS_REQUEST = 'GET_DEAL_DETAILS_REQUEST';
+// const variable for get tattlebox list response
+export const GET_DEAL_DETAILS_RESPONSE = 'GET_DEAL_DETAILS_RESPONSE';
+// const variable for get tattlebox list faild
+export const GET_DEAL_DETAILS_FAILED = 'GET_DEAL_DETAILS_FAILED';
 
 // setting
 // const variable for enable loader 

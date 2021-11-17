@@ -6,7 +6,6 @@ import * as types from './types';
 
 /**
  * @description getDeviceList - get Device List request
- * @param  {string} token - User token for get device list request
  */
 export function getDeviceList(size, from, lat, long, searchPhrase) {
   return {
@@ -49,6 +48,38 @@ export function getDeviceResponse(response) {
     location
   };
 }
+//---
+/**
+ * @description getDealDetails - get Device List request
+ * @param  {string} token - User token for get device list request
+ */
+ export function getDealDetails(sourceDealId) {
+  return {
+    type: types.GET_DEAL_DETAILS_REQUEST,
+    sourceDealId,
+  };
+}
+
+/**
+ * @description  getDeviceList - get evice List failed action
+ */
+export function getDealDetailsFailed() {
+  return {
+    type: types.GET_DEAL_DETAILS_FAILED,
+  };
+}
+
+/**
+ * @description  getDeviceResponse - get Device List failed action
+ * @param  {object} response - deal Response
+ */
+export function getDealDetailsResponse(response) {
+  return {
+    type: types.GET_DEAL_DETAILS_RESPONSE,
+    response,
+  };
+}
+//---
 
 /**
  * @description enableLoader - enable Loader

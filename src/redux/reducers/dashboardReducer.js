@@ -7,14 +7,16 @@ const initialState = {
   limit: 10,
   offset: 10,
   spinner: false,
-  size : 10,
-  from : 0,
-  lat : '',
-  long : '',
-  searchPhrase : '',
+  size: 10,
+  from: 0,
+  lat: '',
+  long: '',
+  searchPhrase: '',
   dealsList: {},
   location: {},
   deviceDetailsResponse: {},
+  dealDetailsResponse: {},
+  sourceDealId: ''
 };
 
 /**
@@ -26,11 +28,11 @@ export default function dashboardReducer(state = initialState, action) {
     case types.GET_DEVICE_REQUEST:
       return {
         ...state,
-        size : action.size,
-        from : action.from,
-        lat : action.lat,
-        long : action.long,
-        searchPhrase : action.searchPhrase,
+        size: action.size,
+        from: action.from,
+        lat: action.lat,
+        long: action.long,
+        searchPhrase: action.searchPhrase,
         spinner: true,
       };
     case types.DASHBOARD_ENABLE_LOADER:
@@ -78,6 +80,26 @@ export default function dashboardReducer(state = initialState, action) {
         ...state,
         spinner: false,
       };
+    //--
+    case types.GET_DEAL_DETAILS_REQUEST:
+      return {
+        ...state,
+        sourceDealId: action.sourceDealId,
+        spinner: true,
+      };
+    case types.GET_DEAL_DETAILS_RESPONSE:
+      return {
+        ...state,
+        dealDetailsResponse: action.response,
+        spinner: false,
+      };
+    case types.GET_DEAL_DETAILS_FAILED:
+      return {
+        ...state,
+        dealDetailsResponse: {},
+        spinner: false,
+      };
+    //--
     default:
       return state;
   }
