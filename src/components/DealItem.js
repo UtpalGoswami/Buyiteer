@@ -22,15 +22,26 @@ import Images from '../utils/Images';
 export default DealItem = ({ item, onPress }) => {
     return (
         <TouchableOpacity onPress={onPress} style={styles.item}>
-            <ImageBackground
-                style={styles.bgImage}
-                source={{
-                    uri: item.deal.image !== null ? item.deal.image : Images.defaultDeal,
-                }}>
-                <Image
-                    source={{ uri: item.store.logo.url }}
-                    style={styles.logo} />
-            </ImageBackground>
+            {item.deal.image !== null ?
+                <ImageBackground
+                    style={styles.bgImage}
+                    source={{
+                        uri: item.deal.image,
+                    }}>
+                    <Image
+                        source={{ uri: item.store.logo.url }}
+                        style={styles.logo} />
+                </ImageBackground>
+                :
+                <ImageBackground
+                    style={styles.bgImage}
+                    source={Images.defaultDeal}>
+                    <Image
+                        source={{ uri: item.store.logo.url }}
+                        style={styles.logo} />
+                </ImageBackground>
+            }
+
             <View style={styles.details}>
                 <Text style={styles.title}>{item.deal.title}</Text>
                 <Text style={styles.place}>{item.store.place}</Text>

@@ -81,8 +81,6 @@ export const MAKE_REQUEST_API_REQUEST = 'MAKE_REQUEST_API_REQUEST';
 export const MAKE_REQUEST_API_RESPONSE = 'MAKE_REQUEST_API_RESPONSE';
 // const variable for unlink tattlebox
 export const UNLINK_TATTLEBOX_REQUEST = 'UNLINK_TATTLEBOX_REQUEST';
-// const variable for unlink tattlebox response
-export const UNLINK_TATTLEBOX_RESPONSE = 'UNLINK_TATTLEBOX_RESPONSE';
 // const variable for unlink tattlebox
 export const GET_COMMON_REFRESH_FUNCTION_REQUEST = 'GET_COMMON_REFRESH_FUNCTION_REQUEST';
 // const variable for unlink tattlebox response

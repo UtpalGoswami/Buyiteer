@@ -8,6 +8,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import Images from '../../utils/Images';
 import { Button, Input, TextButton, AuthText, Spinner } from '../../components';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import NetInfo from "@react-native-community/netinfo";
 
 /**
  * @class Profile
@@ -67,8 +68,8 @@ export default Profile = ({ navigation }) => {
     if (validateRequest()) {
       NetInfo.addEventListener(state => {
         if (state.isConnected) {
-          setSpinner(true);
-          console.log('..Update Profile..');
+          // setSpinner(true);
+          Alert.alert('BUYITEER', 'Update profile coming soon!')
         } else {
           Alert.alert('BUYITEER', I18n.t('connection.errorMessage'))
         }

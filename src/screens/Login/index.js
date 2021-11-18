@@ -7,7 +7,8 @@ import {
     Alert,
     Text,
     StatusBar,
-    SafeAreaView
+    SafeAreaView,
+    BackHandler
 } from 'react-native';
 import { colors, I18n } from '../../constants';
 import { Button, Input, TextButton, AuthText, Spinner } from '../../components';
@@ -48,6 +49,18 @@ const Login = ({ navigation }) => {
 
     const loginResponse = useSelector(state => state.loginReducer.loginResponse);
     // const spinnerResponse = useSelector(state => state.loginReducer.spinner);
+
+    useEffect(() => {
+        const backAction = () => {
+            return true;
+        };
+        const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            backAction
+        );
+
+        return () => backHandler.remove();
+    }, []);
 
     useEffect(async () => {
         // console.log('Final Login Resp : ' + JSON.stringify(loginResponse));
