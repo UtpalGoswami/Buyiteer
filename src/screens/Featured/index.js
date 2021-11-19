@@ -96,14 +96,15 @@ export default Featured = ({navigation}) => {
       );
 
       setSpinner(true);
-      getPlaceName(getUpdateLocation.latitude, getUpdateLocation.longitude);
+      // setDealList([]);
+      getPlaceName(getUpdateLocation.lat, getUpdateLocation.lng);
       setTimeout(() => {
         dispatch(
           getDeviceList(
             size,
             from,
-            getUpdateLocation.latitude,
-            getUpdateLocation.longitude,
+            getUpdateLocation.lat,
+            getUpdateLocation.lng,
             searchPhrase,
           ),
         );
@@ -252,9 +253,9 @@ export default Featured = ({navigation}) => {
     let ret = await Geocoder.geocodePosition({lat, lng});
     let address = ret[0];
     if (
-      address.hasOwnProperty('subLocality') &&
-      address.subLocality != '' &&
-      address.subLocality != null
+      address.hasOwnProperty('streetName') &&
+      address.streetName != '' &&
+      address.streetName != null
     ) {
       setSubLocality(address.streetName);
     } else {
@@ -277,7 +278,7 @@ export default Featured = ({navigation}) => {
         item={item._source}
         onPress={() => {
           navigation.navigate('FeaturedDetails', {
-            item: item._source,
+            id : item._source.sourceDealId
           });
         }}
       />

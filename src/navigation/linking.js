@@ -6,14 +6,14 @@ const config = {
         id: id => `${id}`,
       },
     },
-    Notifications: 'notifications',
-    Settings: 'settings',
+    Splash: 'Splash',
   },
 };
 
 const linking = {
-  prefixes: ['https://buyiteer.com'],
+  prefixes: ['https://buyiteer'],
   config,
 };
 
 export default linking;
+

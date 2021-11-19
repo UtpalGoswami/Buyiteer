@@ -1,4 +1,4 @@
-import {Alert} from 'react-native';
+import { Alert } from 'react-native';
 // Storage
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
@@ -194,25 +194,25 @@ export const LogOut = () => {
 /**
  * @function SpecifyLocation Specify Location
  */
- export const SpecifyLocation = (terms) => {
+export const SpecifyLocation = (terms) => {
   const URL = PLACES_API_URL +
-  "?input=" + encodeURIComponent(terms.trim()) +
-  "&components=country:aus" +
-  "&types=(regions)&key=AIzaSyCoOSAYqfkrSCKCupmG9uF-wUsPGKw2FaI";
+    "?input=" + encodeURIComponent(terms.trim()) +
+    "&components=country:aus" +
+    "&types=(regions)&key=AIzaSyCoOSAYqfkrSCKCupmG9uF-wUsPGKw2FaI";
 
   console.log('SpecifyLocation URL : ' + URL);
 
   return new Promise(async (resolve, reject) => {
     axios.get(URL)
-    .then(response => {
-      console.log("SpecifyLocation Resp : ", JSON.stringify(response.data));
-      resolve(response);
-    })
-    .catch(error => {
-      // handle error
-      console.log('SpecifyLocation error : ', error);
-      resolve(error);
-    });
+      .then(response => {
+        console.log("SpecifyLocation Resp : ", JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(error => {
+        // handle error
+        console.log('SpecifyLocation error : ', error);
+        resolve(error);
+      });
 
 
   });
@@ -264,7 +264,7 @@ export const GetDeals = async (size, from, lat, long, searchPhrase) => {
       axios
         .post(URL, data, options)
         .then(response => {
-        //   console.log('GetDeals Resp : ', JSON.stringify(response.data));
+          //   console.log('GetDeals Resp : ', JSON.stringify(response.data));
           resolve(response);
         })
         .catch(error => {
@@ -274,6 +274,28 @@ export const GetDeals = async (size, from, lat, long, searchPhrase) => {
         });
     });
   }
+};
+
+/**
+ * @function GetDealsDetails GetDealsDetails
+ */
+export const GetDealsDetails = async (sourceDealId) => {
+  var URL = SERVICEURL1 + '/deal/' + sourceDealId;
+  console.log('GetDealsDetails URL1 : ' + URL);
+
+  return new Promise(async (resolve, reject) => {
+    axios
+      .get(URL)
+      .then(response => {
+        // console.log("GetDealsDetails Resp : ", JSON.stringify(response.data));
+        resolve(response);
+      })
+      .catch(error => {
+        // handle error
+        // console.log('GetDealsDetails error : ', error);
+        resolve(error);
+      });
+  });
 };
 
 /**

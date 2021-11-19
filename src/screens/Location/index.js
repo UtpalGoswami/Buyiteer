@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -10,23 +10,24 @@ import {
 import styles from './style';
 // Images
 import Images from '../../utils/Images';
-import {colors} from '../../constants';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import { colors } from '../../constants';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Geolocation from 'react-native-geolocation-service';
 // Redux
-import {useDispatch, useSelector} from 'react-redux';
-import {refreshLocation} from '../../redux/actions/dashboardActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { refreshLocation } from '../../redux/actions/dashboardActions';
 
 // Import Autocomplete component
-import Autocomplete from 'react-native-autocomplete-input';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+const API_KEY = 'AIzaSyCoOSAYqfkrSCKCupmG9uF-wUsPGKw2FaI';
 
 /**
  * @class Location
  * @param  {Object} navigation - Use for navigation
  */
-export default Location = ({navigation}) => {
+export default Location = ({ navigation }) => {
   /**
    * @description dispatch {object} - Dispatch Action
    */
@@ -39,6 +40,7 @@ export default Location = ({navigation}) => {
   const [useLocationManager, setUseLocationManager] = useState(false);
   const [location, setLocation] = useState(null);
   const [postcode, setPostcode] = useState();
+  const [textInput, setTextInput] = useState();
 
 
   const hasPermissionIOS = async () => {
@@ -62,8 +64,8 @@ export default Location = ({navigation}) => {
         `Turn on Location Services to allow Buyiteer to determine your location.`,
         '',
         [
-          {text: 'Go to Settings', onPress: openSetting},
-          {text: "Don't Use Location", onPress: () => {}},
+          { text: 'Go to Settings', onPress: openSetting },
+          { text: "Don't Use Location", onPress: () => { } },
         ],
       );
     }
@@ -122,8 +124,8 @@ export default Location = ({navigation}) => {
     Geolocation.getCurrentPosition(
       position => {
         var setCoords = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
         };
         console.log('setCoords : ' + JSON.stringify(setCoords));
         setLocation(setCoords);
@@ -151,12 +153,12 @@ export default Location = ({navigation}) => {
     );
   };
 
-  const SpecifyLocation = () => {};
+  const SpecifyLocation = () => { };
 
   return (
     <SafeAreaView style={styles.safeView}>
-      <View style={{marginVertical: 15, flexDirection: 'row'}}>
-        <View style={{flex: 0.1, marginStart: 5}}>
+      <View style={{ marginVertical: 15, flexDirection: 'row' }}>
+        <View style={{ flex: 0.1, marginStart: 5 }}>
           <Ionicons
             name="arrow-back"
             size={30}
@@ -166,13 +168,13 @@ export default Location = ({navigation}) => {
             }}
           />
         </View>
-        <View style={{flex: 0.9, alignItems: 'center'}}>
+        <View style={{ flex: 0.9, alignItems: 'center' }}>
           <Text style={styles.headerText}>Location</Text>
         </View>
       </View>
 
       <View style={styles.container}>
-        <View style={{margin: 20, flex: 1}}>
+        <View style={{ margin: 20, flex: 1 }}>
           <View style={styles.locationView}>
             <TouchableOpacity
               onPress={() => {
@@ -193,30 +195,73 @@ export default Location = ({navigation}) => {
             <Text>OR</Text>
           </View>
 
-          <View>
-            <Text style={{fontSize: 15}}>Specify location</Text>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <TextInput
-                placeholder={'Enter suburb or postcode'}
-                placeholderTextColor={colors.lightGrey}
-                style={styles.inputContainer}
-                value={postcode}
-                onChangeText={e => {
-                  setPostcode(e);
+          <Text style={{ fontSize: 15, marginBottom: 10 }}>Specify location</Text>
+          <GooglePlacesAutocomplete
+            GooglePlacesDetailsQuery={{ fields: 'geometry' }}
+            minLength={2}
+            listViewDisplayed="auto"
+            autoFocus={false}
+            returnKeyType={'search'}
+            fetchDetails={true} // you need this to fetch the details object onPress
+            placeholder='Enter suburb or postcode'
+            textInputProps={{
+              clearButtonMode: 'never',
+              ref: input => {
+                setTextInput(input);
+              }
+            }}
+            onPress={(data, details = null) => {
+              // 'details' is provided when fetchDetails = true
+              // console.log("data", data);
+              // console.log("details", details);
+              console.log(JSON.stringify(details?.geometry?.location));
+              setLocation(details?.geometry?.location);
+              dispatch(refreshLocation(details?.geometry?.location));
+              navigation.navigate('Featured1');
+            }}
+            query={{
+              key: API_KEY,
+              language: 'en',
+            }}
+            styles={{
+              textInputContainer: {
+                borderColor: colors.lightGrey,
+                borderBottomWidth: 0.7,
+                color: colors.black,
+                fontSize: 18,
+                paddingHorizontal: 1,
+                backgroundColor: colors.white,
+              },
+              textInput: {
+                fontSize: 17,
+                color : colors.gray
+              },
+              predefinedPlacesDescription: {
+                color: colors.lightGrey,
+              },
+            }}
+            renderRightButton={() => (
+              <TouchableOpacity
+                style={{
                 }}
-                autoCapitalize="none"
-                onSubmitEditing={() => SpecifyLocation()}
-              />
-              <Entypo
-                name="cross"
-                size={30}
-                color={colors.black}
                 onPress={() => {
-                  console.log('..Cross Press..');
+                  textInput.clear()
                 }}
-              />
-            </View>
-          </View>
+              >
+                <Entypo
+                  name="cross"
+                  size={30}
+                  color={colors.black}
+                  onPress={() => {
+                    console.log('..Cross Press..');
+                  }}
+                />
+              </TouchableOpacity>
+            )}
+            onFail={(error) => console.error(error)}
+          />
+
+
         </View>
       </View>
     </SafeAreaView>

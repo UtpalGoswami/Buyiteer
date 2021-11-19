@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Alert,
   Linking,
@@ -13,11 +13,11 @@ import {
   TouchableOpacity,
   Share,
 } from 'react-native';
-import {colors} from '../../constants';
-import {DealItem, Spinner} from '../../components';
+import { colors } from '../../constants';
+import { DealItem, Spinner } from '../../components';
 // Redux
-import {useDispatch, useSelector} from 'react-redux';
-import {getDeviceList} from '../../redux/actions/dashboardActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDealDetails, getDealDetailsResponse } from '../../redux/actions/dashboardActions';
 // Images
 import Images from '../../utils/Images';
 // Style
@@ -26,19 +26,18 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import moment from 'moment';
 import Geolocation from 'react-native-geolocation-service';
 import getDirections from 'react-native-google-maps-directions';
-import {getDistance, getPreciseDistance} from 'geolib';
+import { getDistance, getPreciseDistance } from 'geolib';
 
 /**
  * @class FeaturedDetails
  * @param  {Object} navigation - Use for navigation
  */
-export default FeaturedDetails = ({route, navigation}) => {
+export default FeaturedDetails = ({ route, navigation }) => {
   /**
    * @description dispatch {object} - Dispatch Action
    */
   const dispatch = useDispatch();
-
-  const {item} = route.params;
+  const { id } = route.params;
 
   const [spinner, setSpinner] = useState(false);
   const [details, setDetails] = useState({});
@@ -50,18 +49,36 @@ export default FeaturedDetails = ({route, navigation}) => {
   const [isViewDeal, setIsViewDeal] = useState(true);
   const [displayCode, setDisplayCode] = useState(false);
 
-  const dealsResponse = useSelector(state => state.dashboardReducer.dealsList);
+  const dealDetailsResponse = useSelector(state => state.dashboardReducer.dealDetailsResponse);
   // const spinnerResponse = useSelector(state => state.dashboardReducer.spinner);
 
   useEffect(() => {
+    console.log('id ::: ' + JSON.stringify(id));
+    // console.log('item ::: '+JSON.stringify(item));
     setSpinner(true);
-    setDetails(item);
-    setSpinner(false);
+    if (id) {
+      dispatch(getDealDetails(id));
+    } else {
+      setSpinner(false);
+    }
   }, []);
 
   useEffect(() => {
     getLocation();
   }, []);
+
+  useEffect(() => {
+    // console.log('dealDetailsResponse :: ' + JSON.stringify(dealDetailsResponse.data));
+    if (dealDetailsResponse.data && dealDetailsResponse.status === 200) {
+      // console.log('dealDetailsResponse.data._source : ' + JSON.stringify(dealDetailsResponse.data._source));
+      setDetails(dealDetailsResponse.data._source);
+      setSpinner(false);
+      var setResponse = {};
+      dispatch(getDealDetailsResponse(setResponse));
+    } else {
+      setSpinner(false);
+    }
+  }, [dealDetailsResponse]);
 
   const hasPermissionIOS = async () => {
     const openSetting = () => {
@@ -84,8 +101,8 @@ export default FeaturedDetails = ({route, navigation}) => {
         `Turn on Location Services to allow Buyiteer to determine your location.`,
         '',
         [
-          {text: 'Go to Settings', onPress: openSetting},
-          {text: "Don't Use Location", onPress: () => {}},
+          { text: 'Go to Settings', onPress: openSetting },
+          { text: "Don't Use Location", onPress: () => { } },
         ],
       );
     }
@@ -144,7 +161,7 @@ export default FeaturedDetails = ({route, navigation}) => {
     Geolocation.getCurrentPosition(
       position => {
         setLocation(position.coords);
-        console.log('position : ' + JSON.stringify(position.coords));
+        // console.log('position : ' + JSON.stringify(position.coords));
       },
       error => {
         Alert.alert(`Code ${error.code}`, error.message);
@@ -229,13 +246,14 @@ export default FeaturedDetails = ({route, navigation}) => {
     Linking.openURL(phoneNumber);
   };
 
-  const OpenURLButton = async ({url}) => {
+  const OpenURLButton = async (url) => {
     // Checking if the link is supported for links with custom URL scheme.
-    const supported = await Linking.canOpenURL(url);
+    const supportedURL = 'https://' + url;
+    const supported = await Linking.canOpenURL(supportedURL);
     if (supported) {
       // Opening the link with some app, if the URL scheme is "http" the web link should be opened
       // by some browser in the mobile
-      await Linking.openURL(url);
+      await Linking.openURL(supportedURL);
     } else {
       Alert.alert(`Don't know how to open this URL: ${url}`);
     }
@@ -245,9 +263,9 @@ export default FeaturedDetails = ({route, navigation}) => {
     try {
       const result = await Share.share({
         title: 'Buyiteer',
-        message:
-          'Please install this app and stay safe , AppLink :https://play.google.com/store/apps/details?id=123',
-        url: 'https://play.google.com/store/apps/details?id=123',
+        message: 'https://buyiteer/FeaturedDetails?id=' + id,
+        url:
+          'https://buyiteer/FeaturedDetails?id=' + id
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
@@ -268,7 +286,7 @@ export default FeaturedDetails = ({route, navigation}) => {
     const now = moment();
     const exp = moment(expiration);
     // console.log(exp.format());
-    
+
     var days = exp.diff(now, 'days');
     var hours = exp.subtract(days, 'days').diff(now, 'hours');
     var minutes = exp.subtract(hours, 'hours').diff(now, 'minutes');
@@ -280,8 +298,8 @@ export default FeaturedDetails = ({route, navigation}) => {
 
   return (
     <SafeAreaView style={styles.safeView}>
-      <View style={{marginVertical: 10, flexDirection: 'row'}}>
-        <View style={{flex: 0.1, marginStart: 5}}>
+      <View style={{ marginVertical: 10, flexDirection: 'row' }}>
+        <View style={{ flex: 0.1, marginStart: 5 }}>
           <Ionicons
             name="arrow-back"
             size={30}
@@ -291,10 +309,10 @@ export default FeaturedDetails = ({route, navigation}) => {
             }}
           />
         </View>
-        <View style={{flex: 0.8, alignItems: 'center'}}>
+        <View style={{ flex: 0.8, alignItems: 'center' }}>
           <Text style={styles.headerText}>Buyiteer</Text>
         </View>
-        <View style={{flex: 0.1, marginEnd: 5}}>
+        <View style={{ flex: 0.1, marginEnd: 5 }}>
           <Ionicons
             name="share-social"
             size={30}
@@ -310,7 +328,7 @@ export default FeaturedDetails = ({route, navigation}) => {
         <Spinner color={colors.blue} />
       ) : (
         <View style={styles.container}>
-          <View style={{flex: 0.36}}>
+          <View style={{ flex: 0.36 }}>
             <View style={styles.imageView}>
               <ImageBackground
                 style={styles.bgImage}
@@ -321,16 +339,16 @@ export default FeaturedDetails = ({route, navigation}) => {
                       : Images.defaultDeal,
                 }}>
                 <Image
-                  source={{uri: details.store.logo.url}}
+                  source={{ uri: details.store.logo.url }}
                   style={styles.logo}
                 />
               </ImageBackground>
             </View>
           </View>
 
-          <View style={{flex: 0.64, justifyContent: 'space-between'}}>
+          <View style={{ flex: 0.64, justifyContent: 'space-between' }}>
             {isViewDeal ? (
-              <View style={{flex: 1, justifyContent: 'space-between'}}>
+              <View style={{ flex: 1, justifyContent: 'space-between' }}>
                 <View style={styles.details}>
                   <Text style={styles.title1}>What you get</Text>
                   <Text style={styles.title}>
@@ -376,8 +394,8 @@ export default FeaturedDetails = ({route, navigation}) => {
                 </View>
               </View>
             ) : (
-              <View style={{alignItems: 'center', marginTop: 35}}>
-                <View style={{alignItems: 'center'}}>
+              <View style={{ alignItems: 'center', marginTop: 35 }}>
+                <View style={{ alignItems: 'center' }}>
                   <Text
                     style={{
                       color: colors.gray,
@@ -386,7 +404,7 @@ export default FeaturedDetails = ({route, navigation}) => {
                     }}>
                     Expires in
                   </Text>
-                  <Text style={{color: colors.gray}}>
+                  <Text style={{ color: colors.gray }}>
                     {calExpires(details.deal.duration.endDateTime)}
                   </Text>
                 </View>
@@ -409,7 +427,7 @@ export default FeaturedDetails = ({route, navigation}) => {
                     </Text>
                   </View>
                 )}
-                <Text style={{color: colors.gray, marginTop: 10}}>
+                <Text style={{ color: colors.gray, marginTop: 10 }}>
                   Show / Enter this code at checkout
                 </Text>
               </View>
