@@ -11,9 +11,9 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2C4FD1507D82A0D332CB21A7 /* libPods-Buyiteer-BuyiteerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A6223EEAB5B53B0562DBB9E /* libPods-Buyiteer-BuyiteerTests.a */; };
-		494825F102D33A389253FBC0 /* libPods-Buyiteer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4439A526798FB6DD5D2F1C39 /* libPods-Buyiteer.a */; };
+		3FA6653F3B49AC74D2AED6DC /* libPods-Buyiteer-BuyiteerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 438D36A24868A592C0E50324 /* libPods-Buyiteer-BuyiteerTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		BF0811537AAEEBE3E26A4C8D /* libPods-Buyiteer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B55D77E9598D19B9D3D3E67 /* libPods-Buyiteer.a */; };
 		FA6AEF452714992A00411744 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6AEF442714992A00411744 /* File.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,13 +37,13 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Buyiteer/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Buyiteer/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Buyiteer/main.m; sourceTree = "<group>"; };
-		24B10C39D7E651F5062A1AE0 /* Pods-Buyiteer-BuyiteerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buyiteer-BuyiteerTests.release.xcconfig"; path = "Target Support Files/Pods-Buyiteer-BuyiteerTests/Pods-Buyiteer-BuyiteerTests.release.xcconfig"; sourceTree = "<group>"; };
-		4439A526798FB6DD5D2F1C39 /* libPods-Buyiteer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Buyiteer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		56A6F3F86261558E6A1F4062 /* Pods-Buyiteer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buyiteer.release.xcconfig"; path = "Target Support Files/Pods-Buyiteer/Pods-Buyiteer.release.xcconfig"; sourceTree = "<group>"; };
-		5A6223EEAB5B53B0562DBB9E /* libPods-Buyiteer-BuyiteerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Buyiteer-BuyiteerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D9A2F3C0506DDE0025E77E3 /* Pods-Buyiteer-BuyiteerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buyiteer-BuyiteerTests.debug.xcconfig"; path = "Target Support Files/Pods-Buyiteer-BuyiteerTests/Pods-Buyiteer-BuyiteerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1DA9B2500BDFCA55706D3109 /* Pods-Buyiteer-BuyiteerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buyiteer-BuyiteerTests.release.xcconfig"; path = "Target Support Files/Pods-Buyiteer-BuyiteerTests/Pods-Buyiteer-BuyiteerTests.release.xcconfig"; sourceTree = "<group>"; };
+		3B55D77E9598D19B9D3D3E67 /* libPods-Buyiteer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Buyiteer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		438D36A24868A592C0E50324 /* libPods-Buyiteer-BuyiteerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Buyiteer-BuyiteerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		48BC62F4B0007BEAD2D1AD24 /* Pods-Buyiteer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buyiteer.release.xcconfig"; path = "Target Support Files/Pods-Buyiteer/Pods-Buyiteer.release.xcconfig"; sourceTree = "<group>"; };
+		651FBDFCF80F5FB3B55A97E2 /* Pods-Buyiteer-BuyiteerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buyiteer-BuyiteerTests.debug.xcconfig"; path = "Target Support Files/Pods-Buyiteer-BuyiteerTests/Pods-Buyiteer-BuyiteerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Buyiteer/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B107B9E36528BD5E83A86DFE /* Pods-Buyiteer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buyiteer.debug.xcconfig"; path = "Target Support Files/Pods-Buyiteer/Pods-Buyiteer.debug.xcconfig"; sourceTree = "<group>"; };
+		C4A035F47895B95AB165E072 /* Pods-Buyiteer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buyiteer.debug.xcconfig"; path = "Target Support Files/Pods-Buyiteer/Pods-Buyiteer.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FA6AEF432714992A00411744 /* Buyiteer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Buyiteer-Bridging-Header.h"; sourceTree = "<group>"; };
 		FA6AEF442714992A00411744 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
@@ -54,7 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C4FD1507D82A0D332CB21A7 /* libPods-Buyiteer-BuyiteerTests.a in Frameworks */,
+				3FA6653F3B49AC74D2AED6DC /* libPods-Buyiteer-BuyiteerTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				494825F102D33A389253FBC0 /* libPods-Buyiteer.a in Frameworks */,
+				BF0811537AAEEBE3E26A4C8D /* libPods-Buyiteer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,8 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				4439A526798FB6DD5D2F1C39 /* libPods-Buyiteer.a */,
-				5A6223EEAB5B53B0562DBB9E /* libPods-Buyiteer-BuyiteerTests.a */,
+				3B55D77E9598D19B9D3D3E67 /* libPods-Buyiteer.a */,
+				438D36A24868A592C0E50324 /* libPods-Buyiteer-BuyiteerTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -153,10 +153,10 @@
 		C17ED14128B8B7513D72EEAC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B107B9E36528BD5E83A86DFE /* Pods-Buyiteer.debug.xcconfig */,
-				56A6F3F86261558E6A1F4062 /* Pods-Buyiteer.release.xcconfig */,
-				6D9A2F3C0506DDE0025E77E3 /* Pods-Buyiteer-BuyiteerTests.debug.xcconfig */,
-				24B10C39D7E651F5062A1AE0 /* Pods-Buyiteer-BuyiteerTests.release.xcconfig */,
+				C4A035F47895B95AB165E072 /* Pods-Buyiteer.debug.xcconfig */,
+				48BC62F4B0007BEAD2D1AD24 /* Pods-Buyiteer.release.xcconfig */,
+				651FBDFCF80F5FB3B55A97E2 /* Pods-Buyiteer-BuyiteerTests.debug.xcconfig */,
+				1DA9B2500BDFCA55706D3109 /* Pods-Buyiteer-BuyiteerTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -168,12 +168,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "BuyiteerTests" */;
 			buildPhases = (
-				F0D530D97FFEE894FABE4703 /* [CP] Check Pods Manifest.lock */,
+				9F67EE2857E3AA982EB06D39 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				B146D575EAF780D9CD0D0E8B /* [CP] Embed Pods Frameworks */,
-				D189AE360CA66F1553EA8D85 /* [CP] Copy Pods Resources */,
+				1F1613134CD4AC1B43280C15 /* [CP] Embed Pods Frameworks */,
+				E1E4E2C597660354AEBA3DBB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -189,14 +189,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Buyiteer" */;
 			buildPhases = (
-				747FACECA24EA2394C1D282A /* [CP] Check Pods Manifest.lock */,
+				AB1D0DD1CAFB2340C9241A92 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				AEAA1DF9A889E03C1EFAFCC1 /* [CP] Embed Pods Frameworks */,
-				0E19E6FBAC71B9ABC390CF67 /* [CP] Copy Pods Resources */,
+				397F096961ACA978ADA1837F /* [CP] Embed Pods Frameworks */,
+				99F155FD15BA34CB6A609609 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -277,7 +277,41 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		0E19E6FBAC71B9ABC390CF67 /* [CP] Copy Pods Resources */ = {
+		1F1613134CD4AC1B43280C15 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Buyiteer-BuyiteerTests/Pods-Buyiteer-BuyiteerTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Buyiteer-BuyiteerTests/Pods-Buyiteer-BuyiteerTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Buyiteer-BuyiteerTests/Pods-Buyiteer-BuyiteerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		397F096961ACA978ADA1837F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Buyiteer/Pods-Buyiteer-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Buyiteer/Pods-Buyiteer-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Buyiteer/Pods-Buyiteer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		99F155FD15BA34CB6A609609 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -294,7 +328,29 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Buyiteer/Pods-Buyiteer-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		747FACECA24EA2394C1D282A /* [CP] Check Pods Manifest.lock */ = {
+		9F67EE2857E3AA982EB06D39 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Buyiteer-BuyiteerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB1D0DD1CAFB2340C9241A92 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -316,41 +372,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AEAA1DF9A889E03C1EFAFCC1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Buyiteer/Pods-Buyiteer-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Buyiteer/Pods-Buyiteer-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Buyiteer/Pods-Buyiteer-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B146D575EAF780D9CD0D0E8B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Buyiteer-BuyiteerTests/Pods-Buyiteer-BuyiteerTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Buyiteer-BuyiteerTests/Pods-Buyiteer-BuyiteerTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Buyiteer-BuyiteerTests/Pods-Buyiteer-BuyiteerTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D189AE360CA66F1553EA8D85 /* [CP] Copy Pods Resources */ = {
+		E1E4E2C597660354AEBA3DBB /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -365,28 +387,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Buyiteer-BuyiteerTests/Pods-Buyiteer-BuyiteerTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F0D530D97FFEE894FABE4703 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Buyiteer-BuyiteerTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -442,7 +442,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6D9A2F3C0506DDE0025E77E3 /* Pods-Buyiteer-BuyiteerTests.debug.xcconfig */;
+			baseConfigurationReference = 651FBDFCF80F5FB3B55A97E2 /* Pods-Buyiteer-BuyiteerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -470,7 +470,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 24B10C39D7E651F5062A1AE0 /* Pods-Buyiteer-BuyiteerTests.release.xcconfig */;
+			baseConfigurationReference = 1DA9B2500BDFCA55706D3109 /* Pods-Buyiteer-BuyiteerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -495,11 +495,12 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B107B9E36528BD5E83A86DFE /* Pods-Buyiteer.debug.xcconfig */;
+			baseConfigurationReference = C4A035F47895B95AB165E072 /* Pods-Buyiteer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XVHNP4EQJR;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Buyiteer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -522,11 +523,12 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56A6F3F86261558E6A1F4062 /* Pods-Buyiteer.release.xcconfig */;
+			baseConfigurationReference = 48BC62F4B0007BEAD2D1AD24 /* Pods-Buyiteer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XVHNP4EQJR;
 				INFOPLIST_FILE = Buyiteer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
