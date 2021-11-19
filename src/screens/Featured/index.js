@@ -96,13 +96,13 @@ export default Featured = ({navigation}) => {
       );
 
       setSpinner(true);
-      // setDealList([]);
+      setDealList([]);
       getPlaceName(getUpdateLocation.lat, getUpdateLocation.lng);
       setTimeout(() => {
         dispatch(
           getDeviceList(
             size,
-            from,
+            0,
             getUpdateLocation.lat,
             getUpdateLocation.lng,
             searchPhrase,

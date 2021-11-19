@@ -38,6 +38,11 @@ const Logout = ({ navigation }) => {
         const unsubscribe = navigation.addListener('focus', async () => {
             await AsyncStorage.setItem('EmailAddress', '');
             navigation.navigate('AuthNavigator');
+            try {
+                navigation.reset();
+            } catch (error) {
+                console.log('Reset Error : '+error);
+            }
             // setSpinner(true);
             // // Dispatch login request
             // dispatch(logOut());
