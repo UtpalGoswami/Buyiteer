@@ -112,7 +112,7 @@ const Login = ({ navigation }) => {
             {spinner ? <Spinner color={colors.blue} /> :
                 <View style={styles.container}>
                     <View style={styles.topView}>
-                        <View style={{ alignItems: 'center' }}>
+                        <View style={{ flex: 0.3 }}>
                             <Image source={Images.headerLogo} style={styles.logoImage} />
                         </View>
                         <View>

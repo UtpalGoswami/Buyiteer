@@ -11,7 +11,7 @@ const config = {
 };
 
 const linking = {
-  prefixes: ['https://buyiteer'],
+  prefixes: ['https://buyiteer.com'],
   config,
 };
 

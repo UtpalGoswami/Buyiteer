@@ -11,8 +11,10 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white
     },
     logoImage: {
-        height : 100, 
-        width : 200 
+        flex: 1,
+        width: null,
+        height: null,
+        resizeMode: 'contain'
     },
     btnView: {
         marginTop: 30

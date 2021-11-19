@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {
   Alert,
   Linking,
@@ -12,6 +12,7 @@ import {
   ImageBackground,
   TouchableOpacity,
   Share,
+  Animated
 } from 'react-native';
 import { colors } from '../../constants';
 import { DealItem, Spinner } from '../../components';
@@ -27,6 +28,31 @@ import moment from 'moment';
 import Geolocation from 'react-native-geolocation-service';
 import getDirections from 'react-native-google-maps-directions';
 import { getDistance, getPreciseDistance } from 'geolib';
+
+const FadeInView = (props) => {
+  const fadeAnim = useRef(new Animated.Value(100)).current  // Initial value for opacity: 0
+
+  useEffect(() => {
+    Animated.timing(
+      fadeAnim,
+      {
+        toValue: -1,
+        duration: 10000,
+      }
+    ).start();
+  }, [fadeAnim])
+
+  return (
+    <Animated.View                 // Special animatable View
+      style={{
+        ...props.style,
+        opacity: fadeAnim,         // Bind opacity to animated value
+      }}
+    >
+      {props.children}
+    </Animated.View>
+  );
+}
 
 /**
  * @class FeaturedDetails
@@ -263,9 +289,9 @@ export default FeaturedDetails = ({ route, navigation }) => {
     try {
       const result = await Share.share({
         title: 'Buyiteer',
-        message: 'https://buyiteer/FeaturedDetails?id=' + id,
+        message: 'https://buyiteer.com/FeaturedDetails?id=' + id,
         url:
-          'https://buyiteer/FeaturedDetails?id=' + id
+          'https://buyiteer.com/FeaturedDetails?id=' + id
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
@@ -430,6 +456,7 @@ export default FeaturedDetails = ({ route, navigation }) => {
                 <Text style={{ color: colors.gray, marginTop: 10 }}>
                   Show / Enter this code at checkout
                 </Text>
+
               </View>
             )}
 

@@ -12,6 +12,7 @@ import styles from './style';
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from '../../redux/actions/signUpActions';
+import { CommonActions } from '@react-navigation/native';
 
 const Logout = ({ navigation }) => {
 
@@ -39,9 +40,17 @@ const Logout = ({ navigation }) => {
             await AsyncStorage.setItem('EmailAddress', '');
             navigation.navigate('AuthNavigator');
             try {
-                navigation.reset();
+                // navigation.reset();
+                navigation.dispatch(
+                    CommonActions.reset({
+                        index: 2,
+                        routes: [
+                            { name: 'Featured' },
+                        ],
+                    })
+                );
             } catch (error) {
-                console.log('Reset Error : '+error);
+                console.log('Reset Error : ' + error);
             }
             // setSpinner(true);
             // // Dispatch login request
