@@ -1,7 +1,7 @@
 const config = {
   screens: {
     FeaturedDetails: {
-      path: 'FeaturedDetails/:id',
+      path: 'AppNavigator/FeaturedDetails/:id',
       parse: {
         id: id => `${id}`,
       },

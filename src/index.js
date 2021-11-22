@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { LogBox } from 'react-native';
 import { StatusBar, ActivityIndicator } from 'react-native';
 import store from './redux/store/index.js';
 import { Provider } from 'react-redux';
@@ -19,6 +20,9 @@ export default function index() {
         uri: environments.graphqlServerUrl.backendGraphqlPathUrl,
         cache: new InMemoryCache()
     });
+    useEffect(() => {
+        LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+    }, [])
 
     return (
         // <Provider store={store}>

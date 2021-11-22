@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.appCommonColor,
     justifyContent: 'center',
     borderRadius: 10,
-    width: '80%'
+    width: '100%'
   },
   SlideBtnText: {
     paddingHorizontal: 10,
@@ -93,6 +93,16 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   ShowCodeView: {
+    borderRadius: 15,
+    marginTop: 20,
+    height: 60,
+    borderColor: colors.appCommonColor,
+    justifyContent: 'center',
+    borderWidth: 1,
+    width: '100%',
+    alignItems: 'center'
+  },
+  ShowCodeView1: {
     borderRadius: 15,
     marginTop: 20,
     height: 60,
@@ -152,6 +162,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#FFF'
   },
+  text: {
+    backgroundColor: 'whitesmoke',
+    padding: 20,
+  },
+  rowRight: {
+    height: 40,
+    backgroundColor: 'green'
+  },
+  rowLeft: {
+
+  }
 });
 
 export default styles;
