@@ -14,7 +14,7 @@ const PLACES_API_URL = "https://maps.googleapis.com/maps/api/place/autocomplete/
  * @param  password {string} - password for new create firebase user
  */
 export const signUp = (email, password) => {
-  const URL = SERVICEURL + '/merchant/' + 'signup';
+  const URL = SERVICEURL + '/merchant/' + 'sign-up';
   console.log('signUp URL : ' + URL);
 
   return new Promise(async (resolve, reject) => {
@@ -77,27 +77,6 @@ export const LogIn = async (email, password) => {
       });
   });
 };
-// authServerUrl: {
-//     authority: 'https://backend.buyiteer.com.au:3000',
-//     forgotPasswordPath: '/merchant/forgot-password',
-//     resetPasswordPath: '/merchant/reset-password',
-//     loginPath: '/merchant/login',
-//     signUpPath: '/merchant/signup',
-//     logoutPath: '/merchant/logout',
-//     imageUploadPath: '/file/upload'
-// }
-
-// register(user: User) {
-//     return request({
-//         url: `${environment.authServerUrl.authority}${environment.authServerUrl.signUpPath}`,
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         content: JSON.stringify({
-//             email: user.email,
-//             password: user.password,
-//         }),
-//     });
-// }
 
 /**
  * @function ForgotPassword forgotPassword

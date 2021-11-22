@@ -445,10 +445,10 @@ export default FeaturedDetails = ({ route, navigation }) => {
                       //       SLIDE LEFT TO DISPLAY CODE
                       //     </Text>
                       //   </View>}
-                      disableSwipeToRight={true}
+                      // disableSwipeToRight={true}
                       renderVisibleContent={() => <View style={styles.SlideBtn}>
                         <Text style={styles.SlideBtnText}>
-                          SLIDE LEFT TO DISPLAY CODE
+                          SLIDE TO VIEW CODE
                         </Text>
                       </View>}
                       renderLeftView={() => (
