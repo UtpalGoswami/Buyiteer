@@ -17,7 +17,7 @@ import NetInfo from "@react-native-community/netinfo";
 import styles from './style';
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { requestSignUp } from '../../redux/actions/signUpActions';
+import { requestSignUp, onsignUpResponse } from '../../redux/actions/signUpActions';
 // Images
 import Images from '../../utils/Images';
 
@@ -49,7 +49,20 @@ const SignUp = ({ navigation }) => {
     // const spinnerResponse = useSelector(state => state.signUpReducer.spinner);
 
     useEffect(async () => {
-        console.log('Final SignUp Resp : ' + JSON.stringify(signUpResponse));
+        // console.log('Final SignUp Resp : ' + JSON.stringify(signUpResponse));
+
+        if (Object.keys(signUpResponse).length !== 0 && signUpResponse.hasOwnProperty('status')) {
+            console.log('signUpResponse.status : ' + signUpResponse.status);
+            if (signUpResponse.status === 200) {
+                navigation.navigate('Login');
+                var setResponse = {}
+                dispatch(onsignUpResponse(setResponse));
+            } else {
+                Alert.alert('Error', I18n.t('loginPage.invalidErrorMsg'))
+            }
+        }
+        setSpinner(false);
+
     }, [signUpResponse]);
 
     /**

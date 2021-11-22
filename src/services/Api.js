@@ -35,6 +35,7 @@ export const signUp = (email, password) => {
         resolve(response);
       })
       .catch(error => {
+        Alert.alert('Error','Something went wrong please try again.!');
         // handle error
         console.log('signup error : ', error);
         resolve(error);
@@ -69,6 +70,7 @@ export const LogIn = async (email, password) => {
         resolve(response);
       })
       .catch(error => {
+        Alert.alert('Error','Invalid email or password.!')
         // handle error
         console.log('LogIn error : ', error);
         resolve(error);
@@ -114,11 +116,11 @@ export const ForgotPassword = email => {
         'Content-Type': 'application/json',
       },
     };
-    console.log('Fina log : ' + URL, data, options);
+    // console.log('Fina log : ' + URL, data, options);
     axios
       .post(URL, data, options)
       .then(async response => {
-        console.log('forgotPassword Resp : ', JSON.stringify(response.data));
+        // console.log('forgotPassword Resp : ', JSON.stringify(response));
         resolve(response);
       })
       .catch(error => {

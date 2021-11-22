@@ -63,18 +63,16 @@ const Login = ({ navigation }) => {
     }, []);
 
     useEffect(async () => {
-        // console.log('Final Login Resp : ' + JSON.stringify(loginResponse));
-        console.log('loginResponse.status : ' + loginResponse.status);
-        if (Object.keys(loginResponse).length !== 0) {
+        // console.log('Final Login Resp : ' + loginResponse);
+        if (Object.keys(loginResponse).length !== 0 && loginResponse.hasOwnProperty('status')) {
+            console.log('loginResponse.status : ' + loginResponse.status);
             if (loginResponse.status === 200) {
                 await AsyncStorage.setItem('EmailAddress', email);
                 navigation.navigate('AppNavigator');
                 var setResponse = {}
                 dispatch(onLoginResponse(setResponse));
-            } else if (loginResponse.status === 400) {
-                Alert.alert('Error', I18n.t('loginPage.invalidErrorMsg'))
             } else {
-                Alert.alert('Error', loginResponse.message)
+                Alert.alert('Error', I18n.t('loginPage.invalidErrorMsg'))
             }
         }
         setSpinner(false);

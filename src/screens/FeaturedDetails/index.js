@@ -259,6 +259,7 @@ export default FeaturedDetails = ({ route, navigation }) => {
       //   }
       // ]
     };
+    console.log('Get directions data : '+JSON.stringify(data));
     getDirections(data);
   };
 
@@ -275,14 +276,15 @@ export default FeaturedDetails = ({ route, navigation }) => {
   const OpenURLButton = async (url) => {
     // Checking if the link is supported for links with custom URL scheme.
     const supportedURL = 'https://' + url;
-    const supported = await Linking.canOpenURL(supportedURL);
-    if (supported) {
-      // Opening the link with some app, if the URL scheme is "http" the web link should be opened
-      // by some browser in the mobile
-      await Linking.openURL(supportedURL);
-    } else {
-      Alert.alert(`Don't know how to open this URL: ${url}`);
-    }
+    await Linking.openURL(supportedURL);
+    // const supported = await Linking.canOpenURL(supportedURL);
+    // if (supported) {
+    //   // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+    //   // by some browser in the mobile
+    //   await Linking.openURL(supportedURL);
+    // } else {
+    //   Alert.alert(`Don't know how to open this URL: ${url}`);
+    // }
   };
 
   const onShare = async () => {

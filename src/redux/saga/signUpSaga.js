@@ -14,7 +14,7 @@ export default function* signUpAsync(action) {
 
   if (response) {
     // Store signup response
-    yield put(signUpActions.onsignUpResponse(response.data));
+    yield put(signUpActions.onsignUpResponse(response));
     // Disable loader
     yield put(signUpActions.disableLoader());
     // no need to call navigate as this is handled by redux store with SwitchNavigator

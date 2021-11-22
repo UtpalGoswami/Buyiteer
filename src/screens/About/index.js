@@ -12,15 +12,17 @@ import styles from './style';
 export default About = ({ navigation }) => {
 
   const OpenURLButton = async (url) => {
+    console.log('url : '+url);
+    await Linking.openURL(url);
     // Checking if the link is supported for links with custom URL scheme.
-    const supported = await Linking.canOpenURL(url);
-    if (supported) {
-      // Opening the link with some app, if the URL scheme is "http" the web link should be opened
-      // by some browser in the mobile
-      await Linking.openURL(url);
-    } else {
-      Alert.alert(`Don't know how to open this URL: ${url}`);
-    }
+    // const supported = await Linking.canOpenURL(url);
+    // if (supported) {
+    //   // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+    //   // by some browser in the mobile
+    //   await Linking.openURL(url);
+    // } else {
+    //   Alert.alert(`Don't know how to open this URL: ${url}`);
+    // }
   };
 
   return (
@@ -51,14 +53,14 @@ export default About = ({ navigation }) => {
           <Text style={{ color: colors.gray }}>To view privacy policy : </Text>
           <TouchableOpacity
             onPress={() => OpenURLButton('https://docs.google.com/document/d/1PhfzbDleOfdyTYNXSIIxVFg4qP3NnfNS2A4tN72QVWY/edit')}>
-            <Text style={{ color: colors.gray }}>click here </Text>
+            <Text style={{ color: colors.blue }}>click here </Text>
           </TouchableOpacity>
         </View>
         <View style={styles.detailView}>
           <Text style={{ color: colors.gray }}>To view terms and conditions : </Text>
           <TouchableOpacity
             onPress={() => OpenURLButton('https://docs.google.com/document/d/1PhfzbDleOfdyTYNXSIIxVFg4qP3NnfNS2A4tN72QVWY/edit')}>
-            <Text style={{ color: colors.gray }}>click here </Text>
+            <Text style={{ color: colors.blue }}>click here </Text>
           </TouchableOpacity>
         </View>
       </View>

@@ -17,7 +17,7 @@ import NetInfo from "@react-native-community/netinfo";
 import styles from './style';
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { requestForgotPassword } from '../../redux/actions/forgotPasswordActions';
+import { requestForgotPassword, onForgotPasswordResponse } from '../../redux/actions/forgotPasswordActions';
 // Images
 import Images from '../../utils/Images';
 
@@ -47,7 +47,18 @@ const ForgotPassword = ({ navigation }) => {
     // const spinnerResponse = useSelector(state => state.loginReducer.spinner);
 
     useEffect(async () => {
-        console.log('Final Forgot Password Resp : ' + JSON.stringify(forgotPasswordResponse));
+        // console.log('Final Forgot Password Resp : ' + JSON.stringify(forgotPasswordResponse));
+        if (Object.keys(forgotPasswordResponse).length !== 0) {
+            if (forgotPasswordResponse.status && forgotPasswordResponse.status === 200) {
+                Alert.alert('Success', 'Please check your email for instructions on choosing a new password.');
+                var setResponse = {};
+                dispatch(onForgotPasswordResponse(setResponse));
+                navigation.navigate('Login');
+            } else {
+                Alert.alert('Fail', 'Unfortunately, an error occurred resetting your password.');
+            }
+            setSpinner(false);
+        }
     }, [forgotPasswordResponse]);
 
     /**

@@ -222,6 +222,8 @@ export default Location = ({ navigation }) => {
             query={{
               key: API_KEY,
               language: 'en',
+              components: 'country:aus',
+              types: 'geocode'
             }}
             styles={{
               textInputContainer: {
