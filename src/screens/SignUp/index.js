@@ -54,11 +54,12 @@ const SignUp = ({ navigation }) => {
         if (Object.keys(signUpResponse).length !== 0 && signUpResponse.hasOwnProperty('status')) {
             console.log('signUpResponse.status : ' + signUpResponse.status);
             if (signUpResponse.status === 200) {
+                Alert.alert('Success', 'Your account was successfully created.');
                 navigation.navigate('Login');
                 var setResponse = {}
                 dispatch(onsignUpResponse(setResponse));
             } else {
-                Alert.alert('Error', I18n.t('loginPage.invalidErrorMsg'))
+                Alert.alert('Error', I18n.t('registerPage.signUpError'))
             }
         }
         setSpinner(false);
@@ -68,7 +69,7 @@ const SignUp = ({ navigation }) => {
     /**
      * @param {} validateRequest - Validate the request
      */
-    validateRequest = () => {
+    const validateRequest = () => {
         // Regux string for email validate
         const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 

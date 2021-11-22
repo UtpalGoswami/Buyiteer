@@ -35,7 +35,7 @@ export const signUp = (email, password) => {
         resolve(response);
       })
       .catch(error => {
-        Alert.alert('Error','Something went wrong please try again.!');
+        Alert.alert('Error','Unfortunately we were unable to create your account.');
         // handle error
         console.log('signup error : ', error);
         resolve(error);
