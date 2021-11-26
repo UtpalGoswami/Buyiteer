@@ -6,7 +6,11 @@ const initialState = {
   id: 0,
   email: '',
   password: '',
+  code: '',
+  newPassword: '',
+  confirmPassword: '',
   forgotPasswordResponse: {},
+  verifyForgotPasswordResponse: {},
   spinner: false,
 };
 
@@ -43,6 +47,26 @@ export default function forgotPasswordReducer(state = initialState, action) {
       return {
         ...state,
         isLoggedIn: false,
+        spinner: false,
+      };
+    case types.VERIFY_FORGOT_PASSWORD_REQUEST:
+      return {
+        ...state,
+        code: action.code,
+        newPassword: action.newPassword,
+        confirmPassword: action.confirmPassword,
+        email: action.email,
+        spinner: true,
+      };
+    case types.VERIFY_FORGOT_PASSWORD_RESPONSE:
+      return {
+        ...state,
+        verifyForgotPasswordResponse: action.response,
+        spinner: false,
+      };
+    case types.VERIFY_FORGOT_PASSWORD_FAILED:
+      return {
+        ...state,
         spinner: false,
       };
     default:

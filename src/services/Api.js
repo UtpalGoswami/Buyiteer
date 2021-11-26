@@ -35,7 +35,7 @@ export const signUp = (email, password) => {
         resolve(response);
       })
       .catch(error => {
-        Alert.alert('Error','Unfortunately we were unable to create your account.');
+        Alert.alert('Error', 'Unfortunately we were unable to create your account.');
         // handle error
         console.log('signup error : ', error);
         resolve(error);
@@ -70,7 +70,7 @@ export const LogIn = async (email, password) => {
         resolve(response);
       })
       .catch(error => {
-        Alert.alert('Error','Invalid email or password.!')
+        Alert.alert('Error', 'Invalid email or password.!')
         // handle error
         console.log('LogIn error : ', error);
         resolve(error);
@@ -105,6 +105,42 @@ export const ForgotPassword = email => {
       .catch(error => {
         // handle error
         console.log('forgotPassword error : ', error);
+        resolve(error);
+      });
+  });
+};
+
+/**
+ * @function VerifyForgotPassword VerifyForgotPassword
+ * @param  email {string} - email for forgot user password
+ */
+export const VerifyForgotPassword = (code, newPassword, confirmPassword, email) => {
+
+  const URL = SERVICEURL + '/merchant/' + 'reset-password';
+  // console.log('VerifyForgotPassword URL : ' + URL);
+
+  return new Promise(async (resolve, reject) => {
+    const data = JSON.stringify({
+      code: code,
+      newPassword: newPassword,
+      confirmPassword: confirmPassword,
+      email: email,
+    });
+    const options = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    // console.log('Fina log : ' + URL, data, options);
+    axios
+      .post(URL, data, options)
+      .then(async response => {
+        // console.log('VerifyForgotPassword Resp : ', JSON.stringify(response));
+        resolve(response);
+      })
+      .catch(error => {
+        // handle error
+        console.log('VerifyForgotPassword error : ', error);
         resolve(error);
       });
   });

@@ -53,7 +53,9 @@ const ForgotPassword = ({ navigation }) => {
                 Alert.alert('Success', 'Please check your email for instructions on choosing a new password.');
                 var setResponse = {};
                 dispatch(onForgotPasswordResponse(setResponse));
-                navigation.navigate('Login');
+                navigation.navigate('SetForgotPassword', {
+                    email: email
+                });
             } else {
                 Alert.alert('Fail', 'Unfortunately, an error occurred resetting your password.');
             }
@@ -65,6 +67,7 @@ const ForgotPassword = ({ navigation }) => {
      * @function onForgotSubmit - email for forgot password
      */
     const onForgotSubmit = () => {
+
         const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (regex.test(email)) {
             NetInfo.addEventListener(state => {
