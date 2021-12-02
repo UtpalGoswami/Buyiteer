@@ -50,7 +50,7 @@ const ForgotPassword = ({ navigation }) => {
         // console.log('Final Forgot Password Resp : ' + JSON.stringify(forgotPasswordResponse));
         if (Object.keys(forgotPasswordResponse).length !== 0) {
             if (forgotPasswordResponse.status && forgotPasswordResponse.status === 200) {
-                Alert.alert('Success', 'Please check your email for instructions on choosing a new password.');
+                Alert.alert('Success', 'Your password was successfully reset. Please check your email for instructions on choosing a new password.');
                 var setResponse = {};
                 dispatch(onForgotPasswordResponse(setResponse));
                 navigation.navigate('SetForgotPassword', {

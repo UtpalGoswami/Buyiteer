@@ -152,8 +152,8 @@
     "missingFirstname": "Please add First name.",
     "missingLastname": "Please add Last name.",
     "invalidEmail": "Invalid email.",
-    "missingPassword": "Please add password.",
-    "missingConfirmPassword": "Please add Confirm password.",
+    "missingPassword": "Password must contain at lest 6 characters.",
+    "missingConfirmPassword": "Confirm password must contain at lest 6 characters.",
     "privacyPolicyErrorMsg": "Please agree to the Terms of Service & Privacy Policy.",
     "passwordNotMatch": "Confirm password does not match.",
     "signUpError": "Unfortunately we were unable to create your account."

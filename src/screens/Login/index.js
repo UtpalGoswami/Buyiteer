@@ -40,10 +40,10 @@ const Login = ({ navigation }) => {
      * @description password {string} - Password for login user.
      * @description spinner {string} - Spinner for wait login user request.
      */
-    const [email, setEmail] = useState('deepak6sp@gmail.com');
-    const [password, setPassword] = useState('123456');
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
+    // const [email, setEmail] = useState('deepak6sp@gmail.com');
+    // const [password, setPassword] = useState('123456');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [spinner, setSpinner] = useState(false);
 
 
@@ -78,17 +78,32 @@ const Login = ({ navigation }) => {
         setSpinner(false);
     }, [loginResponse]);
 
+
+    /**
+     * @param {} validateRequest - Validate the request
+     */
+    const validateRequest = () => {
+        // Regux string for email validate
+        const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if (email === '' || !regex.test(email)) {
+            Alert.alert('BUYITEER', I18n.t('registerPage.invalidEmail'));
+            return false;
+        } else if (password === '' || password.length < 6) {
+            Alert.alert('BUYITEER', I18n.t('registerPage.missingPassword'));
+            return false;
+        } else {
+            console.log('API Calling..');
+            return true;
+        }
+    }
     /**
      * @function onLoginSubmit - Submit the user details
      */
     const onLoginSubmit = () => {
-        // navigation.navigate('AppNavigator');
-        // // Keyboard dismiss
-        // Keyboard.dismiss();
-
         // Regex string for email validate
-        const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (regex.test(email) && password !== '') {
+        const regex = /^(([^<>()[\]\\.,;:\s@\" ]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (validateRequest()) {
             NetInfo.addEventListener(state => {
                 if (state.isConnected) {
                     setSpinner(true);
@@ -98,9 +113,6 @@ const Login = ({ navigation }) => {
                     Alert.alert('Error', I18n.t('connection.errorMessage'))
                 }
             });
-        } else {
-            // Error Alert
-            Alert.alert('BUYITEER', I18n.t('loginPage.invalidErrorMsg'));
         }
     }
 

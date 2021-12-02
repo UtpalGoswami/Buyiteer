@@ -54,7 +54,7 @@ const SignUp = ({ navigation }) => {
         if (Object.keys(signUpResponse).length !== 0 && signUpResponse.hasOwnProperty('status')) {
             console.log('signUpResponse.status : ' + signUpResponse.status);
             if (signUpResponse.status === 200) {
-                Alert.alert('Success', 'Your account was successfully created.');
+                Alert.alert('Success', 'Your account was successfully created. Please check your email to verify email.');
                 navigation.navigate('Login');
                 var setResponse = {}
                 dispatch(onsignUpResponse(setResponse));
@@ -76,10 +76,10 @@ const SignUp = ({ navigation }) => {
         if (email === '' || !regex.test(email)) {
             Alert.alert('BUYITEER', I18n.t('registerPage.invalidEmail'));
             return false;
-        } else if (password === '') {
+        } else if (password === '' || password.length < 6) {
             Alert.alert('BUYITEER', I18n.t('registerPage.missingPassword'));
             return false;
-        } else if (confirmPassword === '') {
+        } else if (confirmPassword === '' || confirmPassword.length < 6) {
             Alert.alert('BUYITEER', I18n.t('registerPage.missingConfirmPassword'));
             return false;
         } else if (confirmPassword !== password) {
