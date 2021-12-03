@@ -17,7 +17,7 @@ import NetInfo from "@react-native-community/netinfo";
 import styles from './style';
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { requestSignUp } from '../../redux/actions/signUpActions';
+import { requestSignUp, onsignUpResponse } from '../../redux/actions/signUpActions';
 // Images
 import Images from '../../utils/Images';
 
@@ -49,23 +49,37 @@ const SignUp = ({ navigation }) => {
     // const spinnerResponse = useSelector(state => state.signUpReducer.spinner);
 
     useEffect(async () => {
-        console.log('Final SignUp Resp : ' + JSON.stringify(signUpResponse));
+        // console.log('Final SignUp Resp : ' + JSON.stringify(signUpResponse));
+
+        if (Object.keys(signUpResponse).length !== 0 && signUpResponse.hasOwnProperty('status')) {
+            console.log('signUpResponse.status : ' + signUpResponse.status);
+            if (signUpResponse.status === 200) {
+                Alert.alert('Success', 'Your account was successfully created. Please check your email to verify email.');
+                navigation.navigate('Login');
+                var setResponse = {}
+                dispatch(onsignUpResponse(setResponse));
+            } else {
+                Alert.alert('Error', I18n.t('registerPage.signUpError'))
+            }
+        }
+        setSpinner(false);
+
     }, [signUpResponse]);
 
     /**
      * @param {} validateRequest - Validate the request
      */
-    validateRequest = () => {
+    const validateRequest = () => {
         // Regux string for email validate
         const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
         if (email === '' || !regex.test(email)) {
             Alert.alert('BUYITEER', I18n.t('registerPage.invalidEmail'));
             return false;
-        } else if (password === '') {
+        } else if (password === '' || password.length < 6) {
             Alert.alert('BUYITEER', I18n.t('registerPage.missingPassword'));
             return false;
-        } else if (confirmPassword === '') {
+        } else if (confirmPassword === '' || confirmPassword.length < 6) {
             Alert.alert('BUYITEER', I18n.t('registerPage.missingConfirmPassword'));
             return false;
         } else if (confirmPassword !== password) {

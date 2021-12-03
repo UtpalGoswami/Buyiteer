@@ -41,6 +41,14 @@ export const FORGOT_PASSWORD_RESPONSE = 'FORGOT_PASSWORD_RESPONSE';
 export const FORGOT_PASSWORD_LOADING_ENDED = 'FORGOT_PASSWORD_LOADING_ENDED';
 // const variable for signup failed
 export const FORGOT_PASSWORD_FAILED = 'FORGOT_PASSWORD_FAILED';
+// const variable for signup request
+export const VERIFY_FORGOT_PASSWORD_REQUEST = 'VERIFY_FORGOT_PASSWORD_REQUEST';
+// const variable for signup response
+export const VERIFY_FORGOT_PASSWORD_RESPONSE = 'VERIFY_FORGOT_PASSWORD_RESPONSE';
+// const variable for signup failed
+export const VERIFY_FORGOT_PASSWORD_FAILED = 'VERIFY_FORGOT_PASSWORD_FAILED';
+
+
 
 // dashboard
 // const variable for enable loader 

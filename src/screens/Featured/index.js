@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Alert,
   Linking,
@@ -12,12 +12,12 @@ import {
   FlatList,
 } from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
-import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {colors} from '../../constants';
-import {DealItem, Spinner} from '../../components';
+import { colors } from '../../constants';
+import { DealItem, Spinner } from '../../components';
 // Redux
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getDeviceList,
   getDeviceResponse,
@@ -35,7 +35,7 @@ const API_KEY = 'AIzaSyCoOSAYqfkrSCKCupmG9uF-wUsPGKw2FaI';
  * @class Featured
  * @param  {Object} navigation - Use for navigation
  */
-export default Featured = ({navigation}) => {
+export default Featured = ({ navigation }) => {
   /**
    * @description dispatch {object} - Dispatch Action
    */
@@ -92,7 +92,7 @@ export default Featured = ({navigation}) => {
     if (Object.keys(getUpdateLocation).length !== 0) {
       console.log(
         '..Finally Update the location.. : ' +
-          JSON.stringify(getUpdateLocation),
+        JSON.stringify(getUpdateLocation),
       );
 
       setSpinner(true);
@@ -144,8 +144,8 @@ export default Featured = ({navigation}) => {
         `Turn on Location Services to allow Buyiteer to determine your location.`,
         '',
         [
-          {text: 'Go to Settings', onPress: openSetting},
-          {text: "Don't Use Location", onPress: () => {}},
+          { text: 'Go to Settings', onPress: openSetting },
+          { text: "Don't Use Location", onPress: () => { } },
         ],
       );
     }
@@ -197,9 +197,9 @@ export default Featured = ({navigation}) => {
   const getLocation = async from => {
     const hasPermission = await hasLocationPermission();
 
-    if (!hasPermission) {
-      return;
-    }
+    // if (!hasPermission) {
+    //   return;
+    // }
 
     Geolocation.getCurrentPosition(
       position => {
@@ -226,8 +226,17 @@ export default Featured = ({navigation}) => {
         }
       },
       error => {
-        Alert.alert(`Code ${error.code}`, error.message);
+        // Alert.alert(`Code ${error.code}`, error.message);
         setLocation(null);
+        dispatch(
+          getDeviceList(
+            size,
+            from,
+            '',
+            '',
+            searchPhrase,
+          ),
+        );
         console.log(error);
       },
       {
@@ -250,7 +259,7 @@ export default Featured = ({navigation}) => {
     // simply add your google key
     Geocoder.fallbackToGoogle(API_KEY);
     // use the lib as usual
-    let ret = await Geocoder.geocodePosition({lat, lng});
+    let ret = await Geocoder.geocodePosition({ lat, lng });
     let address = ret[0];
     if (
       address.hasOwnProperty('streetName') &&
@@ -272,13 +281,13 @@ export default Featured = ({navigation}) => {
     dispatch(getDeviceList(size, 0, latitude, longitude, searchPhrase));
   };
 
-  const renderItem = ({item}) => {
+  const renderItem = ({ item }) => {
     return (
       <DealItem
         item={item._source}
         onPress={() => {
           navigation.navigate('FeaturedDetails', {
-            id : item._source.sourceDealId
+            id: item._source.sourceDealId
           });
         }}
       />
@@ -301,7 +310,7 @@ export default Featured = ({navigation}) => {
           style={styles.loadMoreBtn}>
           <Text style={styles.btnText}>Load More</Text>
           {loading ? (
-            <ActivityIndicator color="blue" style={{marginLeft: 8}} />
+            <ActivityIndicator color="blue" style={{ marginLeft: 8 }} />
           ) : null}
         </TouchableOpacity>
       </View>
@@ -310,8 +319,8 @@ export default Featured = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.safeView}>
-      <View style={{marginVertical: 18, flexDirection: 'row'}}>
-        <View style={{flex: 0.1, marginStart: 5}}>
+      <View style={{ marginVertical: 18, flexDirection: 'row' }}>
+        <View style={{ flex: 0.1, marginStart: 5 }}>
           <Entypo
             name="menu"
             size={25}
@@ -321,7 +330,7 @@ export default Featured = ({navigation}) => {
             }}
           />
         </View>
-        <View style={{flex: 0.8}}>
+        <View style={{ flex: 0.8 }}>
           <TouchableOpacity
             onPress={() => navigation.navigate('Location')}
             style={styles.locationHeader}>

@@ -12,7 +12,8 @@ import {
   ImageBackground,
   TouchableOpacity,
   Share,
-  Animated
+  Animated,
+  Dimensions
 } from 'react-native';
 import { colors } from '../../constants';
 import { DealItem, Spinner } from '../../components';
@@ -28,31 +29,10 @@ import moment from 'moment';
 import Geolocation from 'react-native-geolocation-service';
 import getDirections from 'react-native-google-maps-directions';
 import { getDistance, getPreciseDistance } from 'geolib';
+import SwipeView from 'react-native-swipeview';
 
-const FadeInView = (props) => {
-  const fadeAnim = useRef(new Animated.Value(100)).current  // Initial value for opacity: 0
-
-  useEffect(() => {
-    Animated.timing(
-      fadeAnim,
-      {
-        toValue: -1,
-        duration: 10000,
-      }
-    ).start();
-  }, [fadeAnim])
-
-  return (
-    <Animated.View                 // Special animatable View
-      style={{
-        ...props.style,
-        opacity: fadeAnim,         // Bind opacity to animated value
-      }}
-    >
-      {props.children}
-    </Animated.View>
-  );
-}
+const leftOpenValue = Dimensions.get('window').width;
+const rightOpenValue = -Dimensions.get('window').width;
 
 /**
  * @class FeaturedDetails
@@ -259,6 +239,7 @@ export default FeaturedDetails = ({ route, navigation }) => {
       //   }
       // ]
     };
+    console.log('Get directions data : ' + JSON.stringify(data));
     getDirections(data);
   };
 
@@ -275,14 +256,15 @@ export default FeaturedDetails = ({ route, navigation }) => {
   const OpenURLButton = async (url) => {
     // Checking if the link is supported for links with custom URL scheme.
     const supportedURL = 'https://' + url;
-    const supported = await Linking.canOpenURL(supportedURL);
-    if (supported) {
-      // Opening the link with some app, if the URL scheme is "http" the web link should be opened
-      // by some browser in the mobile
-      await Linking.openURL(supportedURL);
-    } else {
-      Alert.alert(`Don't know how to open this URL: ${url}`);
-    }
+    await Linking.openURL(supportedURL);
+    // const supported = await Linking.canOpenURL(supportedURL);
+    // if (supported) {
+    //   // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+    //   // by some browser in the mobile
+    //   await Linking.openURL(supportedURL);
+    // } else {
+    //   Alert.alert(`Don't know how to open this URL: ${url}`);
+    // }
   };
 
   const onShare = async () => {
@@ -435,7 +417,7 @@ export default FeaturedDetails = ({ route, navigation }) => {
                   </Text>
                 </View>
 
-                {!displayCode ? (
+                {/* {!displayCode ? (
                   <TouchableOpacity
                     style={styles.SlideBtn}
                     onPress={() => {
@@ -452,11 +434,61 @@ export default FeaturedDetails = ({ route, navigation }) => {
                       {details.deal.redemptionCode}
                     </Text>
                   </View>
-                )}
+                )} */}
+
+                {!displayCode ?
+                  <View style={{ width: '80%' }}>
+                    <SwipeView
+                      // renderVisibleContent={() =>
+                      //   <View style={styles.SlideBtn}>
+                      //     <Text style={styles.SlideBtnText}>
+                      //       SLIDE LEFT TO DISPLAY CODE
+                      //     </Text>
+                      //   </View>}
+                      // disableSwipeToRight={true}
+                      renderVisibleContent={() => <View style={styles.SlideBtn}>
+                        <Text style={styles.SlideBtnText}>
+                          SLIDE TO VIEW CODE
+                        </Text>
+                      </View>}
+                      renderLeftView={() => (
+                        <View style={styles.ShowCodeView}>
+                          <Text style={styles.ShowCodeBtnText}>
+                            {details.deal.redemptionCode}
+                          </Text>
+                        </View>
+                      )}
+                      renderRightView={() => (
+                        <View style={styles.ShowCodeView}>
+                          <Text style={styles.ShowCodeBtnText}>
+                            {details.deal.redemptionCode}
+                          </Text>
+                        </View>
+                      )}
+                      leftOpenValue={leftOpenValue}
+                      rightOpenValue={rightOpenValue}
+                      swipeDuration={250}
+                      swipeToOpenPercent={35}
+                      onSwipedRight={() => {
+                        console.log('Complete swipe Right');
+                        setDisplayCode(true);
+                      }}
+                      onSwipedLeft={() => {
+                        console.log('Complete swipe Left');
+                        setDisplayCode(true);
+                      }}
+                    />
+                  </View>
+                  :
+                  <View style={styles.ShowCodeView1}>
+                    <Text style={styles.ShowCodeBtnText}>
+                      {details.deal.redemptionCode}
+                    </Text>
+                  </View>
+                }
                 <Text style={{ color: colors.gray, marginTop: 10 }}>
                   Show / Enter this code at checkout
                 </Text>
-
               </View>
             )}
 
@@ -480,7 +512,8 @@ export default FeaturedDetails = ({ route, navigation }) => {
             </View>
           </View>
         </View>
-      )}
-    </SafeAreaView>
+      )
+      }
+    </SafeAreaView >
   );
 };
