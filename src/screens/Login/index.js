@@ -65,14 +65,19 @@ const Login = ({ navigation }) => {
     useEffect(async () => {
         // console.log('Final Login Resp : ' + loginResponse);
         if (Object.keys(loginResponse).length !== 0 && loginResponse.hasOwnProperty('status')) {
-            console.log('loginResponse.status : ' + loginResponse.status);
+            // console.log('loginResponse.status : ' + loginResponse.status);
             if (loginResponse.status === 200) {
                 await AsyncStorage.setItem('EmailAddress', email);
                 navigation.navigate('AppNavigator');
                 var setResponse = {}
                 dispatch(onLoginResponse(setResponse));
-            } else {
-                Alert.alert('Error', I18n.t('loginPage.invalidErrorMsg'))
+            } 
+            else {
+                if(loginResponse.message) {
+                    Alert.alert('Error', loginResponse.message)
+                } else {
+                    Alert.alert('Error', I18n.t('loginPage.invalidErrorMsg'))
+                }
             }
         }
         setSpinner(false);

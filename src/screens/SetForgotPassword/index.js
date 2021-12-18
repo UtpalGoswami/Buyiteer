@@ -54,7 +54,7 @@ const SetForgotPassword = ({ route, navigation }) => {
         // console.log('Final Verify Forgot Password Resp : ' + JSON.stringify(verifyForgotPasswordResponse));
         if (Object.keys(verifyForgotPasswordResponse).length !== 0) {
             if (verifyForgotPasswordResponse.status && verifyForgotPasswordResponse.status === 200) {
-                Alert.alert('Success', 'Your password was successfully reset. Please check your email for instructions on choosing a new password..');
+                Alert.alert('Success', 'Your password was successfully reset');
                 var setResponse = {};
                 dispatch(onVerifyForgotPasswordResponse(setResponse));
                 navigation.navigate('Login');
@@ -96,7 +96,7 @@ const SetForgotPassword = ({ route, navigation }) => {
             Alert.alert('BUYITEER', I18n.t('setForgotPasswordPage.passwordNotMatch'));
             return false;
         } else {
-            console.log('code, newPassword, confirmPassword, email : '+code, newPassword, confirmPassword, email);
+            // console.log('code, newPassword, confirmPassword, email : '+code, newPassword, confirmPassword, email);
             NetInfo.addEventListener(state => {
                 if (state.isConnected) {
                     setSpinner(true);

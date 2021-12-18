@@ -212,9 +212,9 @@ export default Location = ({ navigation }) => {
             }}
             onPress={(data, details = null) => {
               // 'details' is provided when fetchDetails = true
-              // console.log("data", data);
-              // console.log("details", details);
-              console.log(JSON.stringify(details?.geometry?.location));
+              console.log("data", data);
+              console.log("details", details);
+              console.log(JSON.stringify(details?.geometry));
               setLocation(details?.geometry?.location);
               dispatch(refreshLocation(details?.geometry?.location));
               navigation.navigate('Featured1');
@@ -223,7 +223,7 @@ export default Location = ({ navigation }) => {
               key: API_KEY,
               language: 'en',
               components: 'country:aus',
-              types: 'geocode'
+              types: '(regions)'
             }}
             styles={{
               textInputContainer: {

@@ -260,17 +260,34 @@ export default Featured = ({ navigation }) => {
     Geocoder.fallbackToGoogle(API_KEY);
     // use the lib as usual
     let ret = await Geocoder.geocodePosition({ lat, lng });
+    console.log('ret');
+    console.log(ret);
     let address = ret[0];
+
+    let setTitle = "";
     if (
-      address.hasOwnProperty('streetName') &&
-      address.streetName != '' &&
-      address.streetName != null
+      address.hasOwnProperty('subAdminArea') &&
+      address.subAdminArea != '' &&
+      address.subAdminArea != null
     ) {
-      setSubLocality(address.streetName);
-    } else {
-      var setLocality = address.formattedAddress.split(',');
-      setSubLocality(setLocality[0]);
+      setTitle =`${address.subAdminArea}`; 
+      // setSubLocality(address.streetName);
     }
+    
+    if (
+      address.hasOwnProperty('adminArea') &&
+      address.adminArea != '' &&
+      address.adminArea != null
+    ) {
+      setTitle =`${setTitle} ${address.adminArea}`; 
+      // setSubLocality(address.streetName);
+    }
+    setSubLocality(setTitle);
+    
+    // else {
+    //   var setLocality = address.formattedAddress.split(',');
+    //   setSubLocality(setLocality[0]);
+    // }
     console.log('Get Place Name : ' + JSON.stringify(ret[0]));
   };
 

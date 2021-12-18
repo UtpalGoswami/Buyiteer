@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect, useState} from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { createDrawerNavigator, DrawerItemList } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -17,11 +17,38 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { colors } from '../constants';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useSelector } from "react-redux";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
 function CustomDrawerContent(props) {
+  const [email, setEmail] = useState("");
+  const loginResponse = useSelector(state => state.loginReducer.loginResponse);
+
+  useEffect(async()=>{
+    const tmpEmail = await AsyncStorage.getItem('EmailAddress');
+    if(tmpEmail) setEmail(tmpEmail);
+
+  }, [])
+  useEffect(async () => {
+    // console.log('Final Login Resp : ' + loginResponse);
+    if (Object.keys(loginResponse).length !== 0 && loginResponse.hasOwnProperty('status')) {
+        console.log('loginResponse.status : ' + loginResponse.status);
+        if (loginResponse.status === 200) {
+            // await AsyncStorage.setItem('EmailAddress', email);
+            setEmail(email)
+            // navigation.navigate('AppNavigator');
+            // var setResponse = {}
+           
+        } else {
+            
+        }
+    }
+    // setSpinner(false);
+}, [loginResponse]);
+
   return (
     <View style={styles.container}>
       <View style={styles.mainView}>
@@ -30,7 +57,7 @@ function CustomDrawerContent(props) {
             name="user"
             size={30}
           />
-          <Text style={{ color: colors.white, fontSize: 16, fontWeight: '500', marginTop: 10 }}>deepak6sp@gmail.com</Text>
+          <Text style={{ color: colors.white, fontSize: 16, fontWeight: '500', marginTop: 10 }}>{email}</Text>
         </View>
         <View>
           <DrawerItemList {...props} />

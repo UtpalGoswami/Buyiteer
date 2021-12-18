@@ -49,19 +49,43 @@ const SignUp = ({ navigation }) => {
     // const spinnerResponse = useSelector(state => state.signUpReducer.spinner);
 
     useEffect(async () => {
-        // console.log('Final SignUp Resp : ' + JSON.stringify(signUpResponse));
+        console.log('Final SignUp Resp : ' + JSON.stringify(signUpResponse));
+        // console.log('signUpResponse.status : ' + signUpResponse.message);
 
-        if (Object.keys(signUpResponse).length !== 0 && signUpResponse.hasOwnProperty('status')) {
-            console.log('signUpResponse.status : ' + signUpResponse.status);
-            if (signUpResponse.status === 200) {
-                Alert.alert('Success', 'Your account was successfully created. Please check your email to verify email.');
-                navigation.navigate('Login');
-                var setResponse = {}
-                dispatch(onsignUpResponse(setResponse));
+    //     if(signUpResponse.message && signUpResponse.message.indexOf("status code 400") !== -1) {
+    //         Alert.alert('Alert', 'User has been already registered');
+    //     }
+    //    else {  
+            if (Object.keys(signUpResponse).length !== 0 && signUpResponse.hasOwnProperty('status')) {
+                // console.log('signUpResponse.status : ' + signUpResponse.status);
+                if (signUpResponse.status === 200) {
+                    Alert.alert('Success', 'Your account was successfully created. Please check your email to verify email.');
+                    navigation.navigate('Login');
+                    var setResponse = {}
+                    dispatch(onsignUpResponse(setResponse));
+                   } else {
+                     
+                        if(signUpResponse.message) {
+                            Alert.alert('Error', signUpResponse.message)
+                        } 
+                        else {
+                            Alert.alert('Error', I18n.t('registerPage.signUpError'))
+                        }
+                    
+                    // Alert.alert('Error', I18n.t('registerPage.signUpError'))
+                }
+            } else if(Object.keys(signUpResponse).length !== 0 && signUpResponse.hasOwnProperty('code')) {
+                if(signUpResponse.message) {
+                    Alert.alert('Error', signUpResponse.message)
+                } 
+                else {
+                    Alert.alert('Error', I18n.t('registerPage.signUpError'))
+                }
             } else {
                 Alert.alert('Error', I18n.t('registerPage.signUpError'))
             }
-        }
+            // Alert.alert('Error', I18n.t('registerPage.signUpError'))
+        // } 
         setSpinner(false);
 
     }, [signUpResponse]);
@@ -145,12 +169,11 @@ const SignUp = ({ navigation }) => {
                             />
                         </View>
                     </View>
-
-                    <View style={styles.bottomView}>
-                        <TextButton
-                            text={I18n.t('buttonText.headerBackButton')}
-                            onPress={() => navigation.navigate('Login')}
-                        />
+                           <View style={styles.bottomView}>
+                                 <TextButton
+                                    text={I18n.t('buttonText.headerBackButton')}
+                                      onPress={() => navigation.navigate('Login')}
+                                   />
                     </View>
                 </View>
             }

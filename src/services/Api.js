@@ -15,7 +15,7 @@ const PLACES_API_URL = "https://maps.googleapis.com/maps/api/place/autocomplete/
  */
 export const signUp = (email, password) => {
   const URL = SERVICEURL + '/merchant/' + 'sign-up';
-  console.log('signUp URL : ' + URL);
+  // console.log('signUp URL : ' + URL);
 
   return new Promise(async (resolve, reject) => {
     const data = JSON.stringify({
@@ -27,18 +27,24 @@ export const signUp = (email, password) => {
         'Content-Type': 'application/json',
       },
     };
-    console.log('Fina log : ' + URL, data, options);
+    // console.log('Fina log : ' + URL, data, options);
     axios
       .post(URL, data, options)
       .then(async response => {
         console.log('signup Resp : ', JSON.stringify(response.data));
         resolve(response);
       })
-      .catch(error => {
-        Alert.alert('Error', 'Unfortunately we were unable to create your account.');
+      .catch(({error, response}) => {
+        // if(response && response.data && response.data.message ) {
+        //   Alert.alert('Error', response.data.message );
+        // } else {
+        //   Alert.alert('Error', 'Unfortunately we were unable to create your account.');
+        // }
+        
         // handle error
-        console.log('signup error : ', error);
-        resolve(error);
+        // console.log('signup error : ', error.message);
+        // console.log('signup error : ', JSON.stringify(error));
+        resolve(response.data);
       });
   });
 };
@@ -69,11 +75,17 @@ export const LogIn = async (email, password) => {
         // console.log("LogIn Resp : ", JSON.stringify(response.data));
         resolve(response);
       })
-      .catch(error => {
-        Alert.alert('Error', 'Invalid email or password.!')
+      .catch(({error, response}) => {
+
+        // if(response && response.data && response.data.message ) {
+        //   Alert.alert('Error', response.data.message );
+        // } else {
+        //   Alert.alert('Error', 'Invalid email or password.!');
+        // }
+        // Alert.alert('Error', 'Invalid email or password.!')
         // handle error
-        console.log('LogIn error : ', error);
-        resolve(error);
+        // console.log('LogIn error : ', error);
+        resolve(response);
       });
   });
 };
@@ -84,7 +96,7 @@ export const LogIn = async (email, password) => {
  */
 export const ForgotPassword = email => {
   const URL = SERVICEURL + '/merchant/' + 'forgot-password';
-  console.log('forgotPassword URL : ' + URL);
+  // console.log('forgotPassword URL : ' + URL);
 
   return new Promise(async (resolve, reject) => {
     const data = JSON.stringify({
@@ -99,7 +111,7 @@ export const ForgotPassword = email => {
     axios
       .post(URL, data, options)
       .then(async response => {
-        // console.log('forgotPassword Resp : ', JSON.stringify(response));
+        console.log('forgotPassword Resp : ', JSON.stringify(response));
         resolve(response);
       })
       .catch(error => {
@@ -140,7 +152,7 @@ export const VerifyForgotPassword = (code, newPassword, confirmPassword, email) 
       })
       .catch(error => {
         // handle error
-        console.log('VerifyForgotPassword error : ', error);
+        // console.log('VerifyForgotPassword error : ', error);
         resolve(error);
       });
   });
